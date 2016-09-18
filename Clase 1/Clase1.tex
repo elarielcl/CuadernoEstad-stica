@@ -1,0 +1,161 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage[left=1.5cm,top=1.5cm,right=1.5cm, bottom=1.5cm,letterpaper, includeheadfoot]{geometry}
+
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lmodern,url}
+\usepackage{paralist} %util para listas compactas
+\usepackage{xcolor}
+
+%========PAQUETES AGREGADOS===========
+%Pseudocodigo
+\usepackage{pseudocode}
+\usepackage[portuguese, boxruled]{algorithm2e}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\captionsetup[table]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=empty}
+\usepackage{cancel}
+%====================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead{\footnotesize\itshape\bfseries\rightmark}
+\rhead{\footnotesize\itshape\bfseries\leftmark}
+}
+
+
+% macros
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\BigO}{\mathcal{O}}
+%Teoremas, Lemas, etc.
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+\newtheorem{lem}{Lema}
+\newtheorem{prop}{Proposición}
+\newtheorem{cor}{Corolario}
+\newtheorem{obs}{Observación}
+\newtheorem{ej}{Ejemplo}
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}}
+\renewenvironment{proof}{{\bfseries \noindent Demostración}}{ \qed \\}
+
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definición}
+% fin macros
+
+
+\newcommand{\catnum}{1} %numero de catedra
+\newcommand{\fecha}{2 de Septiembre 2016 }
+
+%%%%%%%%%%%%%%%%%%
+
+%Macros para este documento
+\newcommand{\cin}{\operatorname{cint}}
+
+
+
+\begin{document}
+%Encabezado
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+\vspace*{-1.2 cm}
+\begin{minipage}{0.6\textwidth}
+\begin{flushleft}
+\hspace*{-0.5cm}\textbf{MA3402-1 Estadística. Primavera 2016}\\
+\hspace*{-0.5cm}\textbf{Profesor:} Raul Gouet\\
+\hspace*{-0.5cm}\textbf{Escriba:} Manuel Cáceres\\
+\hspace*{-0.5cm}\textbf{Fecha:} \fecha
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{flushright}
+\includegraphics[scale=0.3]{imagenes/fcfm_dcc}
+\end{flushright}
+\end{minipage}
+\bigskip
+%Fin encabezado
+
+\begin{center}
+\LARGE\textbf{Clase \catnum}
+\end{center}
+\section{Introducción}
+Este es un curso de \textbf{inferencia estadística} que es parte de la estadística matemática y de la teoría de decisiones.\\
+Por otro lado, tenemos la estadística descriptiva que se encarga de describir los datos haciendo resúmenes de la información.\\
+Algunos ejemplos de uso de la estadística son :
+\begin{itemize}
+\item IDIEM analiza los datos obtenidos de sus experimentos
+\item En agricultura se utiliza sobre datos analizables
+\item En los datos generados por el transporte público
+\item En los datos obtenidos del comercio y la economía
+\end{itemize}
+A lo largo del curso veremos que en estadística \textbf{NO} existen las verdades categóricas, pues toda la teoría se basa en probabilidades.
+
+\section{Primeros elementos y Notación}
+Sea $\mathfrak{X}$ un espacio (conjunto) medible, típicamente $\mathbb{R}^n$ o un espacio métrico, donde viven los datos.\\
+Denotamos por $x$ un elemento típico de $\mathfrak{X}$, y decimos que es un dato.\\
+Vamos a denotar por $X$ un elemento aleatorio de $\mathfrak{X}$ (una variable o vector aleatorio en el caso de $\mathfrak{X} = \mathbb{R}\ o\ \mathbb{R}^n$). Y diremos que $x$ es una realización de $X$.\\
+Lo anterior significa que $X$ es una función medible :
+\begin{align*}
+X \colon (\Omega, \mathcal{F}) \mapsto (\mathfrak{X}, \mathcal{B}(\mathfrak{X}))
+\end{align*}
+
+Vamos a suponer que $X$ tiene una ley de probabilidad (i.e. tiene su distribución (por ejemplo, $X$ es a valores en $\mathbb{R}$)).\\
+Esta ley será una probabilidad  sobre el espacio $(\mathfrak{X}, \mathcal{B}(\mathfrak{X}))$ inducida por $X$ de una probabilidad en $(\Omega, \mathcal{F})$.\\
+
+Si $\mathbb{P}$ es probabilidad  en $(\Omega, \mathcal{F})$, entonces la inducida por $X$ en $(\mathfrak{X}, \mathcal{B}(\mathfrak{X}))$ es $\mathbb{P} \circ X^{-1}$. Es importante notar en este punto que en estadística tenemos un modelo conocido, pero hay un parámetro desconocido y lo que estaremos haciendo es dado el $x$, encontrar la ley de probabilidad de $X$.\\
+
+Supondremos que existe una familia de probabilidades sobre el espacio $(\Omega, \mathcal{F})$, que designamos por $\mathcal{P}$. $\mathcal{P}$ es una colección de probabilidades sobre  $(\Omega, \mathcal{F})$.\\
+
+Supondremos también que solo una de ellas está actuando (el verdadero estado de la naturaleza) y esa probabilidad desconocida es la que refleja $X$ en su comportamiento.\\
+
+\begin{align*}
+(\Omega, \mathcal{F}, \left[\mathbb{P}\right]) \xrightarrow{X} (\mathfrak{X}, \mathcal{B}(\mathfrak{X}), \left[\mathbb{P} \circ X^{-1}\right])
+\end{align*}
+Nuestra misión es escoger la mejor $\mathbb{P} \in \mathcal{P}$.\\
+
+La familia $\mathcal{P}$ se puede reducir a un conjunto parametrizado.
+\begin{itemize}
+\item Consideramos $\mathcal{P} = \{ \mathbb{P}_{\theta} \colon \theta \in \Theta\}$
+\item $\theta$ se llama parámetro del modelo
+\item $\Theta$ es el espacio de parámetros
+\end{itemize}
+
+Una misma familia $\mathcal{P}$ puede admitir varias parametrizaciones(veremos ejemplos). Idealmente preferimos parámetros interpretables.\\
+Otro asunto es la identificabilidad, que consiste en pedir  que $\theta \mapsto \mathbb{P}_{\theta}$ es biunívoca.
+
+\begin{ej} Veamos el estudio de una moneda, en términos de inferencia.\\
+Sea $\theta \in \left[0,1\right]$ es la probabilidad de que una moneda (fija) salga cara; suponemos $\theta$ conocido y codificamos cara 1 y sello 0.\\
+Se lanza la moneda $n$ veces independientemente, por lo tanto observamos un $x = (x_{1}, x_{2}, \ldots, x_{n}) \in \{0,1\}^n = \mathfrak{X}$.\\
+
+Sabemos que la probabilidad de cara es $\theta$ y que los lanzamientos son independientes $\forall \theta \in \left[0,1\right] = \Theta$.\\
+Postulamos que la ley del vector $X = (X_{1}, X_{2}, \ldots, X_{n})$ que genera $x$ está dada por $\mathbb{P}_{\theta}$ tal que :
+\begin{align*}
+\mathbb{P}_{\theta}\left[X_{i} = 1\right] = \theta, &\quad \forall \theta \in \Theta, i = 1,2,\ldots,n\\
+\mathbb{P}_{\theta}\left[X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n}=x_{n}\right] = \mathbb{P}_{\theta}\left[X_{1}=x_{1}\right]\mathbb{P}_{\theta}\left[X_{2}=x_{2}\right]\ldots \mathbb{P}_{\theta}\left[X_{n}=x_{n}\right], &\quad \forall \theta \in \Theta, \forall x_{1}, x_{2}, \ldots, x_{n} \in \{0,1\}
+\end{align*}
+
+Recordamos una fórmula muy útil:
+\begin{align*}
+&\mathbb{P}_{\theta}\left[X_{i} = x_{i}\right] = \theta^{x_{i}}(1-\theta)^{1-x_{i}}, &\quad x_{i} \in \{0,1\}\\
+\Rightarrow & \mathbb{P}_{\theta}\left[(X_{1}, X_{2}, \ldots, X_{n}) = (x_{1}, x_{2}, \ldots, x_{n})\right] = \theta^{\sum{x_{i}}}(1-\theta)^{n-\sum{x_{i}}} &\quad \theta \in \Theta = \left[0,1\right],\ x \in \{0,1\}^n
+\end{align*}
+\end{ej}
+Algunos problemas estadísticos que estaremos trabajando son:
+\begin{itemize}
+\item Estimar $\theta$ o una función de $\theta$ (problema de estimación puntual o por conjunto)
+\item Decidir si la moneda es equilibrada (problema de test de hipótesis)
+\end{itemize}
+\end{document}
