@@ -1,0 +1,143 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage[left=1.5cm,top=1.5cm,right=1.5cm, bottom=1.5cm,letterpaper, includeheadfoot]{geometry}
+
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lmodern,url}
+\usepackage{paralist} %util para listas compactas
+\usepackage{xcolor}
+
+%========PAQUETES AGREGADOS===========
+%Pseudocodigo
+\usepackage{pseudocode}
+\usepackage[portuguese, boxruled]{algorithm2e}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\captionsetup[table]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=empty}
+\usepackage{cancel}
+%====================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead{\footnotesize\itshape\bfseries\rightmark}
+\rhead{\footnotesize\itshape\bfseries\leftmark}
+}
+
+
+% macros
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\BigO}{\mathcal{O}}
+%Teoremas, Lemas, etc.
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+\newtheorem{lem}{Lema}
+\newtheorem{prop}{Proposición}
+\newtheorem{cor}{Corolario}
+\newtheorem{obs}{Observación}
+\newtheorem{ej}{Ejemplo}
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}}
+\renewenvironment{proof}{{\bfseries \noindent Demostración}}{ \qed \\}
+
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definición}
+% fin macros
+
+
+\newcommand{\catnum}{2} %numero de catedra
+\newcommand{\fecha}{6 de Septiembre 2016 }
+
+%%%%%%%%%%%%%%%%%%
+
+%Macros para este documento
+\newcommand{\cin}{\operatorname{cint}}
+
+
+
+\begin{document}
+%Encabezado
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+\vspace*{-1.2 cm}
+\begin{minipage}{0.6\textwidth}
+\begin{flushleft}
+\hspace*{-0.5cm}\textbf{MA3402-1 Estadística. Primavera 2016}\\
+\hspace*{-0.5cm}\textbf{Profesor:} Raul Gouet\\
+\hspace*{-0.5cm}\textbf{Escriba:} Manuel Cáceres\\
+\hspace*{-0.5cm}\textbf{Fecha:} \fecha
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{flushright}
+\includegraphics[scale=0.3]{imagenes/fcfm_dcc}
+\end{flushright}
+\end{minipage}
+\bigskip
+%Fin encabezado
+
+\begin{center}
+\LARGE\textbf{Clase \catnum}
+\end{center}
+
+Tenemos un modelo que consiste en una familia $\mathcal{P}$ de medida de probabilidad sobre $(\Omega, \mathcal{F})$.\\
+
+Escribimos:
+\begin{itemize}
+\item $\mathcal{P}=\{\mathbb{P}_{\theta}\colon \theta \in \Theta \}$, en donde a $\theta$ le llamamos parámetro del modelo y $\Theta$ espacio de parámetros.
+\end{itemize}
+Cuando $\Theta \subseteq \mathbb{R}^k$, tenemos $\theta = (\theta_{1}, \theta_{2}, \ldots, \theta_{k})$ y los $\theta_{i}$ son parámetros reales. En este caso diremos que nuestro modelo es paramétrico (pues hay un número finito de parámetros).\\
+
+Para nosotros $\theta$ es un parámetro fijo desconocido.\\
+Podemos observar $X$ (que es un objeto aleatorio) a valores en $\mathfrak{X}$ (espacio medible, típicamente $\mathbb{R}^n$).
+\begin{align*}
+X \colon (\Omega, \mathcal{F}, ?) \mapsto (\mathfrak{X}, \mathcal{B}(\mathfrak{X}), inducida)
+\end{align*}
+
+Supondremmos que está actuando una probabilidad $\mathbb{P}_{\theta} \in \mathcal{P}$, pero no sabemos cual. Queremos adivinar cual es en base a la observación de $X$.\\
+
+Si hemos visto $X=x$, entonces postularemos que la probabilidad en acción es tal.\\
+
+El problema de estimación consiste en usar la información entregada por $X$ para calcular aproximadamente(estimar) una función $g(\theta)$ del parámetro. Esto se consigue definiendo los estadísticos y estimadores.
+
+\section{Estadístico}
+Se define como estadístico a cualquier función medible $T: \mathfrak{X} \mapsto \mathcal{T}$(otro espacio medible).
+El estadístico $T$ puede servir para ``resumir'' la información.\\
+
+Por ejemplo, si $\mathfrak{X} = \mathbb{R}^n,\ x = (x_{1}, x_{2}, \ldots, x_{n})$ entonces son estadísticos:
+\begin{itemize}
+\item $T(x) = \sum_{i=1}^n{x_{i}}$
+\item $S(x) = max\{x_{1}, x_{2}, \ldots, x_{n}\}$
+\item $H(x) = \left(\sum_{i=1}^n{x_{i}}, \sum_{i=1}^n{x_{i}^2}\right)$
+\end{itemize}
+Estos estadísticos son muy comunes.\\
+
+Por extensión diremos que la variable aleatoria $T(X)$ (composición) es un estadístico.
+
+\section{Estimador}
+Un estimador de $g(\theta)$ es un estadístico (habitualmente denotado $\hat{g}$ o $\tilde{g}$)	cuyos valores se parezcan a $g(\theta)$. También diremos que $\hat{g}(X)$ es estimador. Pero a los valores $\hat{g}(x)$ les llamaremos estimaciones.
+
+\begin{ej} Modelo de Bernoulli con $\theta \in \left[0,1\right],\ X = (X_{1}, X_{2}, \ldots, X_{n}),\ \mathfrak{X} = \{0,1\}^n$.\\
+Donde $\mathbb{P}_{\theta}\left[X=x\right] = \theta^{\sum{x_{i}}}(1-\theta)^{n-\sum{x_{i}}}$.\\
+Sea $T(x) = \sum_{i=1}^n{x_{i}}$ un estadístico, y $g(\theta) = \theta$ la función a estimar.\\
+
+Sean $\hat{g_{1}}(x) = \frac{1}{n}\sum_{i=1}^n{x_{i}} = \frac{1}{n}T(x)$ y $\hat{g_{2}}(x) = x_{1}$ dos estimadores de $g(\theta)$.\\
+Si observamos $x=(1,1,0,0,1,0)$ entonces $\hat{g_{1}}((1,1,0,0,1,0)) = \frac{1}{2}$ y $\hat{g_{2}}((1,1,0,0,1,0)) = 1$ son dos estimaciones de $\theta (g(\theta))$.\\
+¿Cómo medimos la calidad de un estimador?
+
+\section{Calidad de un estimador}
+
+\end{ej}
+\end{document}
