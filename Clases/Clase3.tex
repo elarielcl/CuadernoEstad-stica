@@ -1,0 +1,211 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage[left=1.5cm,top=1.5cm,right=1.5cm, bottom=1.5cm,letterpaper, includeheadfoot]{geometry}
+
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lmodern,url}
+\usepackage{paralist} %util para listas compactas
+\usepackage{xcolor}
+\usepackage{bbm}
+
+
+%========PAQUETES AGREGADOS===========
+%Pseudocodigo
+\usepackage{pseudocode}
+\usepackage[portuguese, boxruled]{algorithm2e}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\captionsetup[table]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=empty}
+\usepackage{cancel}
+%====================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead{\footnotesize\itshape\bfseries\rightmark}
+\rhead{\footnotesize\itshape\bfseries\leftmark}
+}
+
+
+% macros
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\BigO}{\mathcal{O}}
+%Teoremas, Lemas, etc.
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+\newtheorem{lem}{Lema}
+\newtheorem{prop}{Proposición}
+\newtheorem{cor}{Corolario}
+\newtheorem{obs}{Observación}
+\newtheorem{ej}{Ejemplo}
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}}
+\renewenvironment{proof}{{\bfseries \noindent Demostración}}{ \qed \\}
+
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definición}
+% fin macros
+
+
+\newcommand{\catnum}{3} %numero de catedra
+\newcommand{\fecha}{13 de Septiembre 2016 }
+
+%%%%%%%%%%%%%%%%%%
+
+%Macros para este documento
+\newcommand{\cin}{\operatorname{cint}}
+
+
+
+\begin{document}
+%Encabezado
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+\vspace*{-1.2 cm}
+\begin{minipage}{0.6\textwidth}
+\begin{flushleft}
+\hspace*{-0.5cm}\textbf{MA3402-1 Estadística. Primavera 2016}\\
+\hspace*{-0.5cm}\textbf{Profesor:} Raul Gouet\\
+\hspace*{-0.5cm}\textbf{Escriba:} Manuel Cáceres\\
+\hspace*{-0.5cm}\textbf{Fecha:} \fecha
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{flushright}
+\includegraphics[scale=0.3]{imagenes/fcfm_dcc}
+\end{flushright}
+\end{minipage}
+\bigskip
+%Fin encabezado
+
+\begin{center}
+\LARGE\textbf{Clase \catnum}
+\end{center}
+Teníamos los siguientes elementos:
+\begin{itemize}
+\item $X$
+\item $\mathfrak{X}$
+\item $\mathcal{P} = \{\mathbb{P}_{\theta}$
+\item $g(\theta)$ función a estimar
+\item $T(X)$ estadístico
+\item $\hat{g}(X)$ estimador
+\item Si $\mathbb{E}_{\theta}(\hat{g}(X)) = g(\theta), \forall \theta \in \Theta$, entonces $\hat{g}(X)$  es insesgado (notar que esto no es garantía de que el estimador es bueno, es solo una condición sobre el promedio.
+\item $ecm_{\theta}(\hat{g}(X)) = \mathbb{E}_{\theta}\left[(\hat{g}(X)-g(\theta))^2\right]$ que bajo insesgamiento es igual a $\mathbb{V}_{\theta}(\hat{g}(X))$
+\end{itemize}
+
+\section{Suficiencia}
+Es un concepto relacionado con la información contenida en la observación $X \in \mathfrak{X}$.\\
+Pensemos que los datos nos entregan información tanto útil como inútil para hacer inferencias sobre el parámetro $\theta$.\\
+
+Sea $T(X)$ un estadístico. Se dice que $T$ (o $T(X)$) es un estadístico suficiente para la familia $\mathcal{P}=\{\mathbb{P}_{\theta}\colon \theta \in \Theta\}$ (o bien suficiente para $\theta$), si la ley condicional de $X$ dato $T(X)$, no depende de $\theta$. Es decir, si
+\begin{align*}
+\mathbb{P}_{\theta}(X\in A | T(X) = t) = \mathcal{H}(A,t)
+\end{align*}
+\begin{ej}
+Sea $X=(X_{1},X_{2},\ldots,X_{n})$ del modelo de Bernoulli, con $\mathbb{P}_{\theta}(X=x) = f_{\theta}(x) = \theta^{\sum{x_{i}}}(1-\theta)^{n-\sum{x_{i}}}, x \in \mathfrak{X} = \{0,1\}^n, \theta \in \Theta =\left[0,1\right]$ .\\
+Sea $T(X) = \sum_{i=1}^n{X_{i}}$. Probemos que $T$ es suficiente para $\theta$.\\
+Calculemos $\mathbb{P}_{\theta}(X=x| \sum_{i=1}^n{X_{i}}=t)$,  $t$ tal que $\mathbb{P}_{\theta}(\sum{X_{i}}=t)>0 \Leftrightarrow t \in \{0,\ldots,n\}$, lo anterior es 
+\begin{align*}
+&= \frac{\mathbb{P}_{\theta}(X=x, \sum{X_{i}}=t)}{\mathbb{P}_{\theta}(\sum{X_{i}}=t)}\\
+&= \frac{\mathbb{P}_{\theta}(X=x)\mathbbm{1}_{\{\sum{X_{i}}=t\}}}{\binom{n}{t}\theta^{t}(1-\theta)^{n-t}}\\
+&= \frac{\theta^{\sum{X_{i}}}(1-\theta)^{n-\sum{X_{i}}}\mathbbm{1}_{\{\sum{X_{i}}=t\}}}{\binom{n}{t}\theta^{t}(1-\theta)^{n-t}}\\
+&= \binom{n}{t}^{-1}
+\end{align*}
+lo que queda luego de condicionar es la información del órden de las caras y sellos. COmo esta ley no depende de $\theta$ decimos que esta información no aporta a la inferencia, por lo que se puede descartar.\\
+\end{ej}
+Un estadístico suficiente podría todavía contener información que no sirve para el proceso de inferencia.\\
+
+Podemos decir que $T(X)$ contiene lo necesario para hacer inferencia, pero puede haber elementos inútiles. Por ejemplo $T(X) = X$ es suficiente.\\
+
+¿Hasta que punto se puede reducir o sacar información irrelevante?
+
+\section{Suficiencia Minimal}
+Queremos definir un estadístico suficiente al que no se le pueda quitar información sin afectar el proceso de inferencia.\\
+
+Diremos que $S(X)$ es un estadístico suficiente minimal (para $\theta$ o la familia $\mathcal{P}$) si
+\begin{itemize}
+\item $S(X)$ es suficiente
+\item Si $T(X)$ es cualquier otro estadístico suficiente, entonces existe una función $f$ tal que $S(X) = f(T(X))$
+\end{itemize}
+
+Es dificil, en general, establecer existencia de estadísticos suficiente minimal. Sin embargo, en el caso discreto o en el caso ``euclidiano'' ($\mathfrak{X}\subseteq\mathbb{R}^n$) ``con densidades'', si se puede encontrar un estadístico suficiente minimal.\\
+
+La idea es bien simple: si $f_{\theta}(x)$ representa la densidad de $X$, entonces se define la siguiente relación de equivalencia en $\mathfrak{X}$:
+\begin{align*}
+x\mathcal{R}y \Leftrightarrow \frac{f_{\theta}(x)}{f_{\theta}(y)} \text{no depende de $\theta$}
+\end{align*}
+Con ella podemos definir una función $S$ sobre $\mathfrak{X}$ tal que:
+\begin{align*}
+x\mathcal{R}y \Leftrightarrow S(x) = S(y) \text{,constante en una clase de equivalencia}
+\end{align*}
+Y resulta que $S$ es un estadístico suficiente minimal.
+
+\begin{ej} Modelo de Bernoulli\\
+\begin{align*}
+\frac{f_{\theta}(x)}{f_{\theta}(y)} &= \frac{\theta^{\sum{x_{i}}}(1-\theta)^{n-\sum{x_{i}}}}{\theta^{\sum{y_{i}}}(1-\theta)^{n-\sum{y_{i}}}}
+\end{align*}
+Que es independiente de $\theta$ si $\sum{x_{i}}=\sum{y_{i}}$.\\
+Esto muestra que $T(X) = \sum{X_{i}}$ es suficiente minimal.\\
+\end{ej}
+
+Nuestro objetivo es encontrar EIVUM, mas que entretenernos con la suficiencia. El cálculo para caracterizar la suficiencia puede ser laborioso (horrible). Es útil tener criterios alternativos.\\
+
+\begin{ej} Modelo Gaussiano\\
+\begin{align*}
+f_{\theta}(x) = \left(\frac{1}{\sqrt{2\pi}\sigma}\right)^ne^{-\frac{1}{2}\sum_{i=1}^n{\left(\frac{x_{i}-\mu}{\sigma}\right)^2}}, \theta = (\mu, \sigma) \in \Theta
+\end{align*}
+Se demuestra que $T(X) = \left(\sum_{i=1}^n{X_{i}}, \sum_{i=1}^n{X_{i}^2}\right)$ es suficiente.\\
+
+Tenemos el siguiente resultado tomado debido a Fisher y Neyman.
+\end{ej}
+
+\section{Teorema de Factorización}
+ Supongamos que el modelo $\mathcal{P} = \{\mathbb{P}_{\theta}\colon \theta \in \Theta\}$ admite densidades $f_{\theta}(x)$ (caso euclideano). Entonces $T(X)$ es un estadístico suficiente si existen funciones $g_{\theta}$ y $h$ (medibles) tales que :
+\begin{align*}
+f_{\theta}(x) = g_{\theta}(T(X))h(X), \text{donde $h$ no depende de $\theta$}
+\end{align*}
+
+\begin{ej} Modelo Bernoulli\\
+\begin{align*}
+f_{\theta}(x) = \theta^{\sum{x_{i}}}(1-\theta)^{n-\sum{x_{i}}}
+\end{align*}
+aquí basta escoger $g_{\theta}(t) = \theta^{t}(1-\theta)^{n-t}$ y $h(x)=1$, por lo que $T(X) = \sum{X_{i}}$ es suficiente.
+\end{ej}
+
+
+\begin{ej} Modelo Gaussiano\\
+\begin{align*}
+f_{\theta}(x) &= k(\theta)e^{-\frac{1}{2}\sum_{i=0}^n{\left(\frac{x_{i}-\mu}{\sigma}\right)^2}}\\
+&= k(\theta)e^{-\frac{1}{2\sigma^2}\sum_{i=0}^n{x_{i}^2}-2\mu\sum_{i=0}^n{x_{i}}+ n \mu^2}\\
+&= g_{\theta}(s,t) h(x), \text{con $h(x) = 1$}
+\end{align*}
+\end{ej}
+
+Terminamos conectando EIVUM gracias al siguiente teorema de Rao-Blackwell. Este resultado sirve para reducir la varianza de un estimador insesgado.
+
+\begin{teo}
+Sea $T(X)$ un estadístico suficiente y $\tilde{g}(X)$ un estimador insesgado de $g(\theta)$.\\
+Entonces se define $\hat{g}(t) = \mathbb{E}_{\theta}(\tilde{g}(X) | T(X) = t)$. Y resulta :
+\begin{enumerate}
+\item $\tilde{g}(T(X))$ es un estimador insesgado de $g(\theta)$
+\item $\mathbb{V}_{\theta}(\hat{g}) \le \mathbb{V}_{\theta}(\tilde{g}), \forall \theta \in \Theta$
+\end{enumerate}
+\end{teo}
+
+
+
+
+
+\end{document}
