@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage[left=1.5cm,top=1.5cm,right=1.5cm, bottom=1.5cm,letterpaper, includeheadfoot]{geometry}
+
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lmodern,url}
+\usepackage{paralist} %util para listas compactas
+\usepackage{xcolor}
+\usepackage{bbm}
+
+
+%========PAQUETES AGREGADOS===========
+%Pseudocodigo
+\usepackage{pseudocode}
+\usepackage[portuguese, boxruled]{algorithm2e}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\captionsetup[table]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=empty}
+\usepackage{cancel}
+%====================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead{\footnotesize\itshape\bfseries\rightmark}
+\rhead{\footnotesize\itshape\bfseries\leftmark}
+}
+
+
+% macros
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\BigO}{\mathcal{O}}
+%Teoremas, Lemas, etc.
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+\newtheorem{lem}{Lema}
+\newtheorem{prop}{Proposición}
+\newtheorem{cor}{Corolario}
+\newtheorem{obs}{Observación}
+\newtheorem{ej}{Ejemplo}
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}}
+\renewenvironment{proof}{{\bfseries \noindent Demostración}}{ \qed \\}
+
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definición}
+% fin macros
+
+
+\newcommand{\catnum}{4} %numero de catedra
+\newcommand{\fecha}{13 de Septiembre 2016 }
+
+%%%%%%%%%%%%%%%%%%
+
+%Macros para este documento
+\newcommand{\cin}{\operatorname{cint}}
+
+
+
+\begin{document}
+%Encabezado
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+\vspace*{-1.2 cm}
+\begin{minipage}{0.6\textwidth}
+\begin{flushleft}
+\hspace*{-0.5cm}\textbf{MA3402-1 Estadística. Primavera 2016}\\
+\hspace*{-0.5cm}\textbf{Profesor:} Raul Gouet\\
+\hspace*{-0.5cm}\textbf{Escriba:} Manuel Cáceres\\
+\hspace*{-0.5cm}\textbf{Fecha:} \fecha
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{flushright}
+\includegraphics[scale=0.3]{imagenes/fcfm_dcc}
+\end{flushright}
+\end{minipage}
+\bigskip
+%Fin encabezado
+
+\begin{center}
+\LARGE\textbf{Clase \catnum}
+\end{center}
+
+\section{Suficiencia y EIVUM}
+Tenemos el concepto de estadístico suficiente $T$ ($T\colon \mathfrak{X} \mapsto \mathcal{T}$) para una familia $\mathcal{P}=\{\mathbb{P}_{\theta}\colon \theta \in \Theta\}$.\\
+También $T(X)$ se llama estadístico.\\
+La ley de $X$ condicionada en $T(X)$ no depende de $\theta$, $\Leftrightarrow \mathbb{P}_{\theta}(X \in A|T(X)) = H(A,T(X))$.\\
+Famoso teorema de factorización: $f_{\theta}(X) = g_{\theta}((T(x)))h(x)$.\\
+\begin{align*}
+\mathbb{\theta}(X\in A) &= \int_{A}f_{\theta}(x)dx, \forall A \in \mathcal{B}(\mathfrak{X})\\
+&= \sum_{X\in A}f_{\theta}(X)
+\end{align*}
+
+\begin{ej} La familia exponencial.\\
+\begin{align*}
+f_{\theta}(x) &= c(\theta) e^{\sum \theta_{i}t_{i}(x)}h(x)\\
+T(X) &= \sum (t_{1}(x), \ldots, t_{k}(x)) , \text{es un suficiente}
+\end{align*}
+\end{ej}
+
+También definimos la idea de suficiencia minimal que significa la mayor reducción posible de información.\\
+Si tenemos 2 estadísticos suficientes $S,T$ tales que $S=f(T)$ entonces preferimos $S$.\\
+Si $S$ es función de cualquier otro estadístico suficiente, entonces $S$ es suficiente minimal (por definición).\\
+¿Existe?, Sí, si existe densidad $f_{\theta}$(continuo o discreto).\\
+Si $\frac{f_{\theta}(x)}{f_{\theta}(y)}$ no depende de $\theta$ decimos que $x\mathcal{R}y$. Esta relación es de equivalencia y forma clases de equivalencia y $S$ se define constante en estas clases de equivalencia.
+
+\section{Teorema de Rao-Blackwell}
+Todo estimador insesgado, por malo que sea(con varianza finita) se puede mejorar mediante una ``Rao-Blackwelización'', algo así como una proyección sobre un $T$ suficiente.\\
+En concreto, si $\tilde{g}$ es insesgado para $g(\theta)$, calculamos $\mathbb{E}_{\theta}(\tilde{g}(X)|T(X))$ que no depende de $\theta$ y que es una variable aleatoria que solo depende de $T(X)$, entonces existe una función $\hat{g}$ tal que:
+\begin{align*}
+\hat{g}(T(X)) = \mathbb{E}_{\theta}(\tilde{g}(X)|T(X))
+\end{align*}
+Por una propiedad de la esperanza condicional (la esperanza de la esperanza condicional, es la eperanza $\mathbb{E}(\mathbb{E}(X|Y)) = \mathbb{E}(X)$). \\
+Resulta que:
+\begin{align*}
+\mathbb{E}_{\theta}(\tilde{g}(T(X))) &= \mathbb{E}_{\theta}(\mathbb{E}_{\theta}(\hat{g}(X)|T(X)))\\
+&= \mathbb{E}_{\theta}(\hat{g}(X))\\
+&= g(\theta)
+\end{align*}
+Además TRB dice que:
+\begin{align*}
+\mathbb{V}_{\theta}(\hat{g}(T(X))) \le \mathbb{V}_{\theta}(\hat{g}(X)),\ \forall \theta \in \Theta
+\end{align*}
+Notar que la Re-Rao-Blackwelización:
+\begin{align*}
+\mathbb{E}_{\theta}(\hat{g}(T(X)|T(X)) = \hat{g}(T(X)), :(
+\end{align*}
+Quizás existe otro suficiente y calculamos :
+\begin{align*}
+\mathbb{E}_{\theta}(\hat{g}(T(X))|S(X))
+\end{align*}
+\section{Completitud}
+\end{document}
