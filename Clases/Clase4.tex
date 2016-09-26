@@ -10,7 +10,7 @@
 \usepackage{paralist} %util para listas compactas
 \usepackage{xcolor}
 \usepackage{bbm}
-
+\usepackage{mathrsfs}
 
 %========PAQUETES AGREGADOS===========
 %Pseudocodigo
@@ -143,4 +143,68 @@ Quizás existe otro suficiente y calculamos :
 \mathbb{E}_{\theta}(\hat{g}(T(X))|S(X))
 \end{align*}
 \section{Completitud}
+Consideremos un estadísitico $T(X)$ el cual induce una familia de probabilidades sobre el espacio $\mathscr{T}$, donde llega. Las denotamos por :
+\begin{align*}
+\mathbb{P}_{\theta, T} (\Omega, \mathcal{T}, \mathbb{P}_{\theta}) \xrightarrow{X} (\mathfrak{X}, \mathcal{B}(\mathfrak{X}, \mathbb{P}_{\theta,X}) \xrightarrow{T} (\mathscr{T}, \mathcal{B}(\mathscr{T}), \mathbb{P}_{\theta, T})
+\end{align*}
+Diremos que $T(X)$ es completo si:
+\begin{align*}
+&\mathbb{E}_{\theta}(g(T(X)) =0, \forall \theta \in \Theta \forall g\\
+\Rightarrow & \mathbb{P}_{\theta}(g(T(X))=0) = 1, \forall \theta \in \Theta \forall g
+\end{align*}
+También se dice que la familia de las leyes inducidas $\{\mathbb{P}_{\theta,T}\colon \theta \in \Theta\}$ es completa.\\
+
+Una manera elegante de enuncuar la completitud de $T(X)$ es diciendo que ``no existen estimadores no triviales insesgados de 0 que sean función de $T(X)$'' (un estimador insesgado de 0 es cualquier función $g(X)$ que tenga $\mathbb{E}_{\theta}(\tilde{g}(X))=0, \forall \theta \in \theta$.\\
+
+Se dice que $T$ es acotadamente completo si la definición anterior solo aplica para funciones $g$ acotadas.\\
+Si $T(X)$ es suficiente y también completo, entonce decimos que $T(X)$ es suficiente-completo.
+
+\begin{teo} Sea $g(\theta)$ una función estimable insesgadamente (es decir, existe $\tilde{g}(X)$ tal que $\mathbb{E}_{\theta}(\tilde{g}(X))=g(\theta), \forall \theta \in \Theta$), y $T(X)$ un estadístico suficiente-completo. Entonces existe un único estimador de $g(\theta)$ función de $T(X)$ y este estimador $\hat{g}(T(X))$ es el EIVUM de $g(\theta)$.\\
+\end{teo}
+Si tenemos dos estimadores insesgados de $g(\theta)$, ambos función de $T(X)$, digamos $\hat{g}_{1}(X)$ y $\hat{g}_{2}(X)$, entonces $\mathbb{E}_{\theta}(\hat{g}_{1}(X)-\hat{g}_{2}(X)) = 0, \forall \theta \in \Theta$. Como  $T(X)$ es completo, entonces  $\mathbb{P}_{\theta}(\hat{g}_{1}(X) = \hat{g}_{2}(X)) = 1, \forall \theta \in \Theta$.\\
+
+Se muestra que $\mathbb{V}_{\theta}(\hat{g}(T(X)))$ es uniformemente menor que la $\mathbb{B}$ de cualquier otro insesgado (EIVUM):
+
+\begin{obs}
+Completitud (acotada) $\Rightarrow$ minimalidad (Bahadur)
+\end{obs}
+
+Este teorema se aplica encontrando por cierto un estadístico suficiente completo $T(X)$ y luego Rao-Blackwellizándolo, llegando así a un EIVUM.\\
+Pero hay un truco que ahorra trabajo: ``basta encontrar un estimador insesgado de $g(\theta)$ que sea función de $T(X)$''
+
+\begin{ej} Modelo de Bernoulli\\
+\begin{align*}
+f_{\theta}(x) = \theta^{\sum x_{i}}(1-\theta)^{n-\sum x_{i}}, x \in \{0,1\}^n, \Theta = \left[0,1\right]
+\end{align*}
+Sea $T(X) = \sum_{i=1}^n X_{i}, X = (X_{1},X_{2},\ldots,X_{n})$ iids Bernoulli.\\
+Sabemos que $T(X)$ es suficiente minimal, pero no si es completo o no.\\
+¿Cuál es la familia $\mathbb{P}_{\theta,T}$? Fácil, pues $\sum X_{i}$ es binomial, es decir, $\mathbb{P}_{\theta}(T(X)=t) 0 \binom{n}{t} \theta^t (1-\theta)^{n-t}, t \in \{0,1,\ldots,n\}$.\\
+Sea $g$ una función definida en $\{0,1,\ldots,n\}$
+\begin{align*}
+\mathbb{E}_{\theta}(g(T(X))) &= \sum_{k=0}^n g(k) \binom{n}{k} \theta^k(1-\theta)^k\\
+&=(1-\theta)^n \sum_{k=0}^n g(k) \binom{n}{k} (\frac{\theta}{1-\theta})^k\\
+(impongo)\ &= 0, \forall \theta \in \Theta = [0,1)
+\end{align*}
+Con esto nos queda un polinomio de grado $n$ en $[0,\infty)$ que se anula,por lo que se concluye que es la función 0.\\
+Luego, evidentemente $\mathbb{P}_{\theta}[g(T(X))=0] = 1$, por lo que es completo.\\
+Finalmente, sabiendo que $\overline{X}_{n} = \frac{T(X)}{n}$ es estimador insesgado de $g(\theta) = \theta$, concluímos que se trata del EIVUM!!!
+\end{ej}
+
+\begin{ej} Modelo de Poisson (con $\theta>0$)\\
+Sea $X=(X_{1},X_{2},\ldots,X_{n})$ una MAS. Recordemos que :
+\begin{align*}
+f_{\theta}(k) &= \prod_{i=1}^n \frac{e^{-\theta} \theta^{k_{i}}}{k_{i}!}, k =(k_{1},k_{2},\ldots, k_{n}) \in \mathfrak{X} = \{0,1,\ldots\}^n\\
+&= \frac{e^{-n\theta}\theta^{\sum k_{i}}}{\prod_{i=1}^n k_{i}!}, \Theta = (0,\infty)
+\end{align*}
+Sea $g(\theta) = \mathbb{P}_{\theta}(X_{1}=0)=e^{-\theta}$.\\
+Encontrar el EIVUM de $g(\theta)$.\\
+Consideramos $T(X) = \sum X_{i}$ como candidato a suficiente-completo. Esto sale gratis por teorema de familia exponencial es suficiente-completo si $\Theta$ contiene un abierto ($\mathbb{R}^n$). Tenemos candidato a EIVUM $e^{-\overline{X}_{n}}$, pero no :(.\\
+El estimador insesgado inicial es $\tilde{g}(X) = \mathbbm{1}_{X_{1}=0}$, que tiene $\mathbb{E}_{\theta}(\tilde{g}(X)) = \mathbb{P}_{\theta}(X_{1}=0)=g(\theta)$.\\
+Del teorema de Rao-Blackwell(TRB) tenemos:
+\begin{align*}
+\mathbb{E}_{\theta}(\tilde{g}(X)| \sum X_{i} = t) &= \mathbb{P}_{\theta}(X_{1}=0| \sum X_{i} = t)\\
+&= \ldots \\
+&= \left(1-\frac{1}{n}\right)^t
+\end{align*}
+\end{ej}
 \end{document}
