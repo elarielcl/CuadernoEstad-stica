@@ -1,0 +1,166 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage[left=1.5cm,top=1.5cm,right=1.5cm, bottom=1.5cm,letterpaper, includeheadfoot]{geometry}
+
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lmodern,url}
+\usepackage{paralist} %util para listas compactas
+\usepackage{xcolor}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+
+%========PAQUETES AGREGADOS===========
+%Pseudocodigo
+\usepackage{pseudocode}
+\usepackage[portuguese, boxruled]{algorithm2e}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\captionsetup[table]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=empty}
+\usepackage{cancel}
+%====================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead{\footnotesize\itshape\bfseries\rightmark}
+\rhead{\footnotesize\itshape\bfseries\leftmark}
+}
+
+
+% macros
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\BigO}{\mathcal{O}}
+%Teoremas, Lemas, etc.
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+\newtheorem{lem}{Lema}
+\newtheorem{prop}{Proposición}
+\newtheorem{cor}{Corolario}
+\newtheorem{obs}{Observación}
+\newtheorem{ej}{Ejemplo}
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}}
+\renewenvironment{proof}{{\bfseries \noindent Demostración}}{ \qed \\}
+
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definición}
+% fin macros
+
+
+\newcommand{\catnum}{4} %numero de catedra
+\newcommand{\fecha}{13 de Septiembre 2016 }
+
+%%%%%%%%%%%%%%%%%%
+
+%Macros para este documento
+\newcommand{\cin}{\operatorname{cint}}
+
+
+
+\begin{document}
+%Encabezado
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+\vspace*{-1.2 cm}
+\begin{minipage}{0.6\textwidth}
+\begin{flushleft}
+\hspace*{-0.5cm}\textbf{MA3402-1 Estadística. Primavera 2016}\\
+\hspace*{-0.5cm}\textbf{Profesor:} Raul Gouet\\
+\hspace*{-0.5cm}\textbf{Escriba:} Manuel Cáceres\\
+\hspace*{-0.5cm}\textbf{Fecha:} \fecha
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{flushright}
+\includegraphics[scale=0.3]{imagenes/fcfm_dcc}
+\end{flushright}
+\end{minipage}
+\bigskip
+%Fin encabezado
+
+\begin{center}
+\LARGE\textbf{Clase \catnum}
+\end{center}
+\section{Notas Finales sobre EIVUM (Teorema de Rao-Blackwell)}
+\begin{enumerate}
+\item Se considera $g(\theta)$ estimable insesgadamente
+\item Hay un estimador insesgado ``inicial'' $\tilde{g}(X)$ para $g(\theta)$ (de cuadrado integrable)
+\item Se tiene un estadístico suficiente $T$
+\item El TRB permite mejorar $\tilde{g}$ condicionando en $T$, $\hat{g}=\mathbb{E}_{\theta}(\tilde{g}(X)|T)$
+\item Está el concepto de completitud de $T$ (se refiere a la familia de leyes de $\mathbb{P_{\theta, T}}$) ssi no existen estimadores insesgados de 0, no triviales, función de $T$.
+\item Si $T$ es suficiente completo, entonces existe una única función de $T$ que es estimador insesgado de $g(\theta)$. La idea es encontrarla, incluso sin usar TRB
+\item El estimador $\hat{g}(T)$ en 5. es el EIVUM
+\item La función de ``pérdida'' $(\cdot-g(\theta))^2$ en el TRB se puede reemplazar por otra función convexa
+\item Si aplicamos TRB cuando $T$ no es completo, entonces resulta algo mejor, pero sera mejorable
+\item Sobre completitud y suficiencia minimal. Si $T$ es completo, entonces minimal (Bahadur)
+\end{enumerate}
+\section{Cota de Cramer-Rao}
+Este es un resultado elegante que entrega una cota (inferior) para la varianza de un estimador insesgado de alguna función $g(\theta)$.\\
+Aquí se necesitan buenas ``condiciones de regularidad'' en términos de la dependencia de $f_{\theta}(x)$ del parámetro $\theta$.\\
+Suponemos que se dispone de densidades para $f_{\theta}$ para $X$(objeto aleatorio).\\
+Sea $\tilde{g}(X)$ estimador insesgado de $g(\theta)$. Entonces:
+\begin{align*}
+\mathbb{E}_{\theta}(\tilde{g}(x)) &= \int_{\mathfrak{X}}\tilde{g}(X)f_{\theta}(x) dx
+\end{align*}
+Supongamos $g(\theta)$ derivable con respecto a $\theta$ y denotemos por $g'(\theta)$ la derivada. Es decir,\footnote{Suponemos condiciones que garantizan pasar la derivada dentro. En algunos ejemplos clásicos esto no funciona.}
+\begin{align*}
+g'(\theta) &= \frac{\partial}{\partial \theta} \int_{\mathfrak{X}} \tilde{g}(x)f_{\theta}(x)dx\\
+&= \int_{\mathfrak{X}}\tilde{g}(x) \frac{\partial f_{\theta}(x)}{\partial \theta} dx\\
+&= \int_{\mathfrak{X}}\left(\tilde{g}(x) \frac{\partial f_{\theta}(x)}{\partial \theta}\frac{1}{f_{\theta}(x)}\right)f_{\theta}(x) dx\\
+&= \int_{\mathfrak{X}}\frac{\partial \log f_{\theta}(x)}{\partial \theta} f_{\theta}(x) dx
+\end{align*}
+Reescribiendo lo anterior tenemos $\mathbb{E}_{\theta}\left(\tilde{g}(X)\frac{\partial \log f_{\theta}(x)}{\partial \theta}(X)\right) = g'(\theta)$.\\
+
+Por otra parte
+\begin{align*}
+1 &= \int_{\mathfrak{X}}f_{\theta}(x) dx
+\end{align*}
+Que si la derivamos con respecto a $\theta$ y suponemos condiciones de regularidas, obtenemos que
+\begin{align*}
+0 &= \int_{\mathfrak{X}} \frac{\partial f_{\theta}(x)}{\partial \theta} dx = \int_{\mathfrak{X}}\frac{\partial \log f_{\theta}(x)}{\partial \theta} f_{\theta}(x) dx
+\end{align*}
+Por lo que tenemos que $\mathbb{E}\left(\frac{\partial \log f_{\theta}(X)}{\partial \theta}\right) = 0$\\
+Para obtener la cota de CR usamos la desigualdad de Cauchy-Shwarz($<x,y>^2 \le ||x||^2||y||^2$).\\
+Aquí el producto interno es la integral de un producto de funciones.\\
+Notemos que :
+\begin{align*}
+g'(\theta) &= \mathbb{E}_{\theta}\left((\tilde{g}(X)-g(\theta)) \frac{\partial \log f_{\theta}(x)}{\partial \theta}\right)\\
+&= Cov_{\theta}\left(\tilde{g}(X), \frac{\partial \log f_{\theta}(x)}{\partial \theta}\right)
+\end{align*}
+Cauchy-Shwarz se traduce en que $Cov^2 \le Var_{1} \cdot Var_{2}$, con lo que llegamos a que :
+\begin{align*}
+&(g'(\theta))^2 \le \mathbb{V}_{\theta}(\tilde{g}(X)) \mathbb{V}_{\theta}\left(\frac{\partial \log f_{\theta}(x)}{\partial \theta}\right)\\
+\Rightarrow & \mathbb{V}_{\theta}(\tilde{g}(X)) \ge \frac{(g'(\theta))^2}{I_{\theta}}
+\end{align*}
+\begin{defi}(Información de Fisher)\\
+Información que $X$ ``contiene'' sobre $\theta$ (bajo las condiciones necesarias de regularidad se cumple la última igualdad)
+\begin{align*}
+I_{\theta} &= \mathbb{V}_{\theta}\left(\frac{\partial \log f_{\theta}(x)}{\partial \theta}\right) \\
+&= \mathbb{E}_{\theta}\left(\left(\frac{\partial \log f_{\theta}(x)}{\partial \theta}\right)^2\right)\\
+&= -\mathbb{E}_{\theta}\left(\frac{\partial^2 \log f_{\theta}(x)}{\partial \theta^2}\right)
+\end{align*}
+\end{defi}
+¿Se alcanza la cota de CR?\\
+
+En casos muy especiales. Aprovechando est cota podemos definir la ``eficiencia'' de $\tilde{g}(X)$, simplemente comparando la varianza con la cota :
+\begin{align*}
+0 \le ef_{\theta}(\tilde{g}) = \frac{\frac{(g'(\theta))^2}{I_{\theta}}}{\mathbb{V}_{\theta}(\tilde{g}(X))} \le 1
+\end{align*}
+Un estimador que alcanza la cota se llama estimador de Cramér-Rao.
+
+\begin{obs}
+Si hay dependencia lineal, es decir si $\frac{\partial \log f_{\theta}(x)}{\partial \theta} = a(\theta)(\tilde{g}(X)-g(\theta))$, entonces se alcanza la cota.
+\end{obs}
+\end{document}
