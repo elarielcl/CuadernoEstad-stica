@@ -1,0 +1,96 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage[left=1.5cm,top=1.5cm,right=1.5cm, bottom=1.5cm,letterpaper, includeheadfoot]{geometry}
+
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lmodern,url}
+\usepackage{paralist} %util para listas compactas
+\usepackage{xcolor}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+
+%========PAQUETES AGREGADOS===========
+%Pseudocodigo
+\usepackage{pseudocode}
+\usepackage[portuguese, boxruled]{algorithm2e}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\captionsetup[table]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=empty}
+\usepackage{cancel}
+%====================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead{\footnotesize\itshape\bfseries\rightmark}
+\rhead{\footnotesize\itshape\bfseries\leftmark}
+}
+
+
+% macros
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\BigO}{\mathcal{O}}
+%Teoremas, Lemas, etc.
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+\newtheorem{lem}{Lema}
+\newtheorem{prop}{Proposición}
+\newtheorem{cor}{Corolario}
+\newtheorem{obs}{Observación}
+\newtheorem{ej}{Ejemplo}
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}}
+\renewenvironment{proof}{{\bfseries \noindent Demostración}}{ \qed \\}
+
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definición}
+% fin macros
+
+
+\newcommand{\catnum}{6} %numero de catedra
+\newcommand{\fecha}{13 de Septiembre 2016 }
+
+%%%%%%%%%%%%%%%%%%
+
+%Macros para este documento
+\newcommand{\cin}{\operatorname{cint}}
+
+
+
+\begin{document}
+%Encabezado
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+\vspace*{-1.2 cm}
+\begin{minipage}{0.6\textwidth}
+\begin{flushleft}
+\hspace*{-0.5cm}\textbf{MA3402-1 Estadística. Primavera 2016}\\
+\hspace*{-0.5cm}\textbf{Profesor:} Raul Gouet\\
+\hspace*{-0.5cm}\textbf{Escriba:} Manuel Cáceres\\
+\hspace*{-0.5cm}\textbf{Fecha:} \fecha
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{flushright}
+\includegraphics[scale=0.3]{imagenes/fcfm_dcc}
+\end{flushright}
+\end{minipage}
+\bigskip
+%Fin encabezado
+
+\begin{center}
+\LARGE\textbf{Clase \catnum}
+\end{center}
+\end{document}
