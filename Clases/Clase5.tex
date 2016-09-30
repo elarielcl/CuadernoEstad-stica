@@ -163,4 +163,51 @@ Un estimador que alcanza la cota se llama estimador de Cramér-Rao.
 \begin{obs}
 Si hay dependencia lineal, es decir si $\frac{\partial \log f_{\theta}(x)}{\partial \theta} = a(\theta)(\tilde{g}(X)-g(\theta))$, entonces se alcanza la cota.
 \end{obs}
+
+\begin{ej} Modelo Bernoulli\\
+\begin{align*}
+f_{\theta}(x) &= \theta^{\sum{x_{i}}(1-\theta)^{n-\sum{x_{i}}}}\\
+\log f_{\theta}(x) = \sum x_{i} \log{\theta} + (n-\sum{x_{i}})\log{(1-\theta)}\\
+\frac{\partial \log f_{\theta}(x)}{\partial \theta} &= \frac{\sum x_{i}}{\theta} - \frac{n-\sum{x_{i}}}{1-\theta}\\
+&= \frac{(1-\theta)\sum{x_{i}}-\theta (n-\sum{x_{i}})}{\theta (1-\theta)}\\
+&= \frac{n(\overline{X}-\theta)}{\theta (1-\theta)}
+\end{align*}
+\underline{Conclusión:} $\overline{X}$ es estimador insesgado de CR para $g(\theta)= 0 \theta$ y $\mathbb{V}(\overline{X}) = \frac{\theta (1-\theta)}{n}$ y además $I_{\theta} = \frac{n}{\theta (1-\theta)}$
+\end{ej}
+
+\begin{ej} Modelo Poisson de parámetro $\theta$, sobre una MAS $X=(X_{1},X_{2},\ldots,X_{n})$\\
+\begin{align*}
+\mathbb{P}_{\theta}(X_{i}=k) &= \frac{e^{-\theta}\theta^{k}}{k!} &\ \theta >0,\ k\in \{0,1,\ldots\}\\
+f_{\theta}(x) &= \prod_{i=1}^n f_{\theta}(x_{i}) = \frac{e^{-n\theta}\theta^{\sum x_{i}}}{\prod x_{i}!}&\\
+\log f_{\theta}(x) &= -n\theta + \sum x_{i} \log \theta - \sum{\log x_{i}!}&\\
+\frac{\partial \log f_{\theta}(x)}{\partial \theta} &= -n + \frac{\sum x_{i}}{\theta} = \frac{n}{\theta}(\overline{X}-\theta)\\
+I_{\theta} = \frac{n}{\theta} & \overline{X}, \text{estimador insesgado de CR} & g(\theta) = \theta
+\end{align*}
+Recordamos el caso de $g(\theta) = e^{-\theta}$, donde tenemos un EIVUM $\left(1-\frac{1}{n}\right)^{n\overline{X}}$.\\
+La cota para cualquier estimador insesgado de $g(\theta) = e^{-\theta}$ es $\mathbb{V}_{\theta}(\tilde{g}(X)) \ge \frac{e^{-2\theta}}{I_{\theta}} = \frac{\theta e^{-2\theta}}{n}$. Se comprueba que el EIVUM no la alcanza.
+\end{ej}
+
+\section{Estimación de máxima verosimilitud}
+Es un primer método y más conocido método para encontrar (no necesariamente inesgado).\\
+Bienvenido porque hasta aquí solo postulábamos estimadores (salidos de la intuición).\\
+La función de verosimilitud no es otra cosa que la densidad $f_{\theta}(x)$, pero vista como función de $\theta$.\\
+Se define $L(\theta) = f_{\theta}(x)$.\\
+Vamos a maximizar $L$ en $\theta$ y así definimos las soluciones que se llaman estimadores de máxima verosimilitud.\\
+Se define el(los) estimador(es) de máxima verosimilitud de $\theta$, como las soluciones al problema $max_{\theta \in \Theta}L(\theta)$ (no tenemos garantía de existencia de máximo).\\
+La solución del problema es un conjunto (no vacío), ya sea $arg\max_{\theta \in \Theta} L(\theta)$ o  $arg\sup_{\theta \in \Theta} L(\theta)$.\\
+Diremos que $\hat{\theta}(x)$ es un estimador de máxima verosimilitud de $\theta$ si $\hat{\theta}(x) \in arg\max_{\theta \in \Theta} L(\theta) \Leftrightarrow L(\hat{\theta}(X)) \ge L(\theta) \forall \theta \in \Theta$.
+\begin{ej} Modelo Bernoulli\\
+\begin{align*}
+L(\theta) = \theta^{\sum{x_{i}}}(1-\theta)^{n-\sum{x_{i}}}\\
+\max_{\theta \in \Theta = \left[0,1\right]} L(\theta)
+\end{align*}
+,por comodidad operamos con $l(\theta) = \log{L(\theta)}$.
+
+\begin{align*}
+l(\theta) &= \sum x_{i} \log{\theta} + (n-\sum x_{i}) \log{(1-\theta)}\\
+\frac{\partial l(\theta)}{\partial \theta} &= \frac{n(\overline{X}-\theta}{\theta (1-\theta)} = 0\\
+\Rightarrow &\hat{\theta}(X) = \overline{X}
+\end{align*}
+Que es el único punto estacionario, que es máximo y por lo tanto estimado de máxima verosimilitud (EMV)
+\end{ej}
 \end{document}
