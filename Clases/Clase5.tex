@@ -112,7 +112,7 @@ Aquí se necesitan buenas ``condiciones de regularidad'' en términos de la depe
 Suponemos que se dispone de densidades para $f_{\theta}$ para $X$(objeto aleatorio).\\
 Sea $\tilde{g}(X)$ estimador insesgado de $g(\theta)$. Entonces:
 \begin{align*}
-\mathbb{E}_{\theta}(\tilde{g}(x)) &= \int_{\mathfrak{X}}\tilde{g}(X)f_{\theta}(x) dx
+\mathbb{E}_{\theta}(\tilde{g}(x)) &= \int_{\mathfrak{X}}\tilde{g}(x)f_{\theta}(x) dx
 \end{align*}
 Supongamos $g(\theta)$ derivable con respecto a $\theta$ y denotemos por $g'(\theta)$ la derivada. Es decir,\footnote{Suponemos condiciones que garantizan pasar la derivada dentro. En algunos ejemplos clásicos esto no funciona.}
 \begin{align*}
@@ -121,7 +121,7 @@ g'(\theta) &= \frac{\partial}{\partial \theta} \int_{\mathfrak{X}} \tilde{g}(x)f
 &= \int_{\mathfrak{X}}\left(\tilde{g}(x) \frac{\partial f_{\theta}(x)}{\partial \theta}\frac{1}{f_{\theta}(x)}\right)f_{\theta}(x) dx\\
 &= \int_{\mathfrak{X}}\frac{\partial \log f_{\theta}(x)}{\partial \theta} f_{\theta}(x) dx
 \end{align*}
-Reescribiendo lo anterior tenemos $\mathbb{E}_{\theta}\left(\tilde{g}(X)\frac{\partial \log f_{\theta}(x)}{\partial \theta}(X)\right) = g'(\theta)$.\\
+Reescribiendo lo anterior tenemos $\mathbb{E}_{\theta}\left(\tilde{g}(X)\frac{\partial \log f_{\theta}(x)}{\partial \theta}\right) = g'(\theta)$.\\
 
 Por otra parte
 \begin{align*}
@@ -167,12 +167,12 @@ Si hay dependencia lineal, es decir si $\frac{\partial \log f_{\theta}(x)}{\part
 \begin{ej} Modelo Bernoulli\\
 \begin{align*}
 f_{\theta}(x) &= \theta^{\sum{x_{i}}(1-\theta)^{n-\sum{x_{i}}}}\\
-\log f_{\theta}(x) = \sum x_{i} \log{\theta} + (n-\sum{x_{i}})\log{(1-\theta)}\\
+\log f_{\theta}(x) &= \sum x_{i} \log{\theta} + (n-\sum{x_{i}})\log{(1-\theta)}\\
 \frac{\partial \log f_{\theta}(x)}{\partial \theta} &= \frac{\sum x_{i}}{\theta} - \frac{n-\sum{x_{i}}}{1-\theta}\\
 &= \frac{(1-\theta)\sum{x_{i}}-\theta (n-\sum{x_{i}})}{\theta (1-\theta)}\\
 &= \frac{n(\overline{X}-\theta)}{\theta (1-\theta)}
 \end{align*}
-\underline{Conclusión:} $\overline{X}$ es estimador insesgado de CR para $g(\theta)= 0 \theta$ y $\mathbb{V}(\overline{X}) = \frac{\theta (1-\theta)}{n}$ y además $I_{\theta} = \frac{n}{\theta (1-\theta)}$
+\underline{Conclusión:} $\overline{X}$ es estimador insesgado de CR para $g(\theta)= \theta$ y $\mathbb{V}(\overline{X}) = \frac{\theta (1-\theta)}{n}$ y además $I_{\theta} = \frac{n}{\theta (1-\theta)}$
 \end{ej}
 
 \begin{ej} Modelo Poisson de parámetro $\theta$, sobre una MAS $X=(X_{1},X_{2},\ldots,X_{n})$\\

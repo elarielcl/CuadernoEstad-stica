@@ -97,7 +97,7 @@ Teníamos los siguientes elementos:
 \begin{itemize}
 \item $X$
 \item $\mathfrak{X}$
-\item $\mathcal{P} = \{\mathbb{P}_{\theta}$
+\item $\mathcal{P} = \{\mathbb{P}_{\theta}\colon \theta \in \Theta\}$
 \item $g(\theta)$ función a estimar
 \item $T(X)$ estadístico
 \item $\hat{g}(X)$ estimador
@@ -109,7 +109,7 @@ Teníamos los siguientes elementos:
 Es un concepto relacionado con la información contenida en la observación $X \in \mathfrak{X}$.\\
 Pensemos que los datos nos entregan información tanto útil como inútil para hacer inferencias sobre el parámetro $\theta$.\\
 
-Sea $T(X)$ un estadístico. Se dice que $T$ (o $T(X)$) es un estadístico suficiente para la familia $\mathcal{P}=\{\mathbb{P}_{\theta}\colon \theta \in \Theta\}$ (o bien suficiente para $\theta$), si la ley condicional de $X$ dato $T(X)$, no depende de $\theta$. Es decir, si
+Sea $T(X)$ un estadístico. Se dice que $T$ (o $T(X)$) es un estadístico suficiente para la familia $\mathcal{P}=\{\mathbb{P}_{\theta}\colon \theta \in \Theta\}$ (o bien suficiente para $\theta$), si la ley condicional de $X$ dado $T(X)$, no depende de $\theta$. Es decir, si
 \begin{align*}
 \mathbb{P}_{\theta}(X\in A | T(X) = t) = \mathcal{H}(A,t)
 \end{align*}
@@ -119,11 +119,11 @@ Sea $T(X) = \sum_{i=1}^n{X_{i}}$. Probemos que $T$ es suficiente para $\theta$.\
 Calculemos $\mathbb{P}_{\theta}(X=x| \sum_{i=1}^n{X_{i}}=t)$,  $t$ tal que $\mathbb{P}_{\theta}(\sum{X_{i}}=t)>0 \Leftrightarrow t \in \{0,\ldots,n\}$, lo anterior es 
 \begin{align*}
 &= \frac{\mathbb{P}_{\theta}(X=x, \sum{X_{i}}=t)}{\mathbb{P}_{\theta}(\sum{X_{i}}=t)}\\
-&= \frac{\mathbb{P}_{\theta}(X=x)\mathbbm{1}_{\{\sum{X_{i}}=t\}}}{\binom{n}{t}\theta^{t}(1-\theta)^{n-t}}\\
-&= \frac{\theta^{\sum{X_{i}}}(1-\theta)^{n-\sum{X_{i}}}\mathbbm{1}_{\{\sum{X_{i}}=t\}}}{\binom{n}{t}\theta^{t}(1-\theta)^{n-t}}\\
+&= \frac{\mathbb{P}_{\theta}(X=x)\mathbbm{1}_{\left\{\sum{X_{i}}=t\right\}}}{\binom{n}{t}\theta^{t}(1-\theta)^{n-t}}\\
+&= \frac{\theta^{\sum{X_{i}}}(1-\theta)^{n-\sum{X_{i}}}\mathbbm{1}_{\left\{\sum{X_{i}}=t\right\}}}{\binom{n}{t}\theta^{t}(1-\theta)^{n-t}}\\
 &= \binom{n}{t}^{-1}
 \end{align*}
-lo que queda luego de condicionar es la información del órden de las caras y sellos. COmo esta ley no depende de $\theta$ decimos que esta información no aporta a la inferencia, por lo que se puede descartar.\\
+lo que queda luego de condicionar es la información del órden de las caras y sellos. Como esta ley no depende de $\theta$ decimos que esta información no aporta a la inferencia, por lo que se puede descartar.\\
 \end{ej}
 Un estadístico suficiente podría todavía contener información que no sirve para el proceso de inferencia.\\
 

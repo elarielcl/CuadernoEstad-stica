@@ -103,19 +103,19 @@ f_{\theta}(x) &= \left(\frac{1}{\sqrt{2\pi}\sigma}\right)^n e^{\frac{1}{2}\sum\l
 l(\theta) &= \log L(\theta) = k - n\log \sigma - \frac{1}{2\sigma^2}\sum\left(x_{i}-\mu\right)^2\\
 \frac{\partial l}{\partial \mu} &= \frac{2}{2\sigma^2}\sum (x_{i}-\mu) = 0 \Leftrightarrow \hat{\mu} = \frac{1}{n}\sum x_{i} = \bar{X}, \forall \sigma
 \end{align*}
-Veamos que $\hat{\mu}(X) = \bar{X}$ es el EMV de $\mu$.\\
+Por lo que $\hat{\mu}(X) = \bar{X}$ es el EMV de $\mu$.\\
 Buscamos ahora el maximizante respecto a $\sigma$.\\
 Aprovechamos que $\hat{\mu}$ es maximizante para estudiar $l(\bar{X},\sigma)$ en lugar de $l(\mu, \sigma)$.\\
-\begin{align*}
-&l(\bar{X}, \sigma) &= k - n\log \sigma - \frac{1}{2\sigma^2}\sum(X_{i}-\bar{X})^2\\
-&\frac{\partial l}{\partial \sigma} &= -\frac{n}{\sigma} + \frac{1}{\sigma^3}\sum (X_{i}-\bar{X})^2 = 0
-\Rightarrow & \hat{\sigma}^2 &= \frac{1}{n}\sum (X_{i}-\hat{X})^2
-\end{align*}
+\begin{eqnarray*}
+& l(\bar{X}, \sigma) & = k - n\log \sigma - \frac{1}{2\sigma^2}\sum(X_{i}-\bar{X})^2\\
+& \frac{\partial l}{\partial \sigma} & = -\frac{n}{\sigma} + \frac{1}{\sigma^3}\sum (X_{i}-\bar{X})^2 = 0\\
+\Rightarrow & \hat{\sigma}^2 & = \frac{1}{n}\sum (X_{i}-\hat{X})^2
+\end{eqnarray*}
 Diríamos que $\hat{\sigma}(x) = \sqrt{\frac{1}{n}\sum (x_{i}-\hat{x})^2}$ es el EMV de $\sigma$ (hay que comprobar que tenemos un max).\\
 Como definición, el EMV de $g(\theta)$ es $g(\hat{\theta})$, donde $\hat{\theta}$ es EMV de $\theta$.\\
 Por lo tanto, $\hat{\sigma}^2 = \frac{1}{n}\sum(x_{i}-\bar{x})^2$ es EMV de la $\sigma^2$ (la varianza de la normal)
 \end{ej}
-\begin{obs}
+\begin{obs}Se tiene que:\\
 \begin{itemize}
 \item $\hat{\mu}(x)$ es insesgado para $\mu$
 \item $\hat{\sigma}^2$ NO es insesgado para $\sigma^2$
@@ -128,16 +128,16 @@ Es sencillo calcular
 &= \frac{1}{n}\sum \mathbb{E}_{\theta} (x_{i}-\bar{x})^2
 \end{align*}
 
-Se calcula $\mathbb{E}_{\theta}(x_{i}-\bar{x})^2$, sumando y restando $\mu$ o bien volviendo a la expresión para la media y desarrollando.
+Se calcula $\mathbb{E}_{\theta}\left((x_{i}-\bar{x})^2\right)$, sumando y restando $\mu$ o bien volviendo a la expresión para la media y desarrollando.
 \begin{align*}
-\mathbb{E}_{\theta}(x_{i}-\bar{x})^2 &= \mathbb{E}_{\theta}(x_{i}-\mu - (\bar{x}-\mu))^2\\
-&= \mathbb{E}_{\theta}(x_{i}-\mu)^2 + \mathbb{E}_{\theta}(\bar{x}-\mu)^2 - 2\mathbb{E}_{\theta}((x_{i}-\mu)(\bar{x}-\mu))\\
+\mathbb{E}_{\theta}\left(x_{i}-\bar{x}\right)^2 &= \mathbb{E}_{\theta}\left((x_{i}-\mu - (\bar{x}-\mu))^2\right)\\
+&= \mathbb{E}_{\theta}\left((x_{i}-\mu)^2\right) + \mathbb{E}_{\theta}\left((\bar{x}-\mu^2)\right) - 2\mathbb{E}_{\theta}((x_{i}-\mu)(\bar{x}-\mu))\\
 &= \sigma^2 + \frac{\sigma^2}{n} - 2 Cov_{\theta}(x_{i},\bar{x})\\
 &= \frac{1}{n} Cov_{\theta}(x_{i},\sum x_{j})\\
 &= \frac{1}{n} \sum_{j} Cov_{\theta}(x_{i},x_{j})\\
 &= \frac{1}{n} \frac{Cov_{\theta}(x_{i},x_{j})}{\sigma^2}
 \end{align*}
-Resulta entonces que $S^2 = \frac{1}{n-1}\sum (x_{i}-\bar{x})^2$ es insesgadp para $\sigma^2$ pero no es EMV.\\
+Resulta entonces que $S^2 = \frac{1}{n-1}\sum (x_{i}-\bar{x})^2$ es insesgado para $\sigma^2$ pero no es EMV.\\
 Sin embargo, $\sqrt{S^2}$ no es insesgado para $\sigma$.
 
 \begin{ej} Caso uniforme\\

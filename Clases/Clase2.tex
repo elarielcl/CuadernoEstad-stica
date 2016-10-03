@@ -154,7 +154,7 @@ Supongamos que $g(\theta)$ es a valores reales y que $\hat{g}$, el estimador de 
 \section{Error Cuadrático Medio}
 Sea $\hat{g}(X)$ un estimador de $g(\theta)$, se define su error cuadrático medio como:
 \begin{align*}
-ecm_{\theta}(\hat{g(X)}) = \mathbb{E}_{\theta}\left[(\hat{g}(X) - g(\theta))^2\right]\ &\quad \text{posiblemente infinito}
+ecm_{\theta}(\hat{g}(X)) = \mathbb{E}_{\theta}\left[(\hat{g}(X) - g(\theta))^2\right]\ &\quad \text{posiblemente infinito}
 \end{align*}
 Esto es una función de $\theta \mapsto ecm_{\theta}(\hat{g})$.\\
 
@@ -195,13 +195,13 @@ ecm_{\theta}(\hat{g}) &= \mathbb{E}_{\theta}((\hat{g}(X)-g(\theta))^2)\\
 &= \mathbb{V}_{\theta}(\hat{g}(X))
 \end{align*}
 
-Dentro de la clase de los esimadores insesgados para $g(\theta)$, buscamos aquel con mínimo $ecm$ (óptimo), es decir, con mínima varianza. Buscaremos, en diversos modelos, los estimadores insesgados de varianza uniformemente mínima (EIVUM).
+Dentro de la clase de los estimadores insesgados para $g(\theta)$, buscamos aquel con mínimo $ecm$ (óptimo), es decir, con mínima varianza. Buscaremos, en diversos modelos, los estimadores insesgados de varianza uniformemente mínima (EIVUM).
 
 \begin{ej} Modelo de Bernoulli \\
 \begin{align*}
 \mathbb{P}_{\theta}(X=x) = \theta^{\sum{x_{i}}}(1-\theta)^{n-\sum{x_{i}}},\ &\quad x = (x_{1}, x_{2}, \ldots, x_{n}) \in \mathfrak{X}=\{0,1\}^n,\ \theta \in \Theta = \left[0,1\right]\\
 g(\theta) = \theta,\ \hat{g}(X) = \frac{1}{n}\sum{X_{i}}\\
-\mathbb{E}_{\theta}(\hat{g}(X)) = \mathbb{E}_{\theta}(\frac{1}{n}\sum_{i=1}^n{X_{i}}) &= \frac{1}{n}\sum_{i=1}^n\mathbb{E}_{\theta}(X_{i})= \frac{1}{n}\sum_{i=1}^n\mathbb{P}_{\theta}(X_{i} = 1)\\
+\mathbb{E}_{\theta}(\hat{g}(X)) = \mathbb{E}_{\theta}\left(\frac{1}{n}\sum_{i=1}^n{X_{i}}\right) &= \frac{1}{n}\sum_{i=1}^n\mathbb{E}_{\theta}(X_{i})= \frac{1}{n}\sum_{i=1}^n\mathbb{P}_{\theta}(X_{i} = 1)\\
 &= \frac{1}{n}\sum_{i=1}^n\theta = \theta = g(\theta)
 \end{align*}
 Entonces $\bar{X}_{n} = \frac{1}{n}\sum_{i=1}^nX_{i}$ es un estimador insesgado de $g(\theta) = \theta$.
@@ -214,7 +214,7 @@ f_{\theta}(x) = \left(\frac{1}{\sqrt{2\pi}\sigma}\right)^ne^{-\frac{1}{2}\sum{\l
 \end{align*}
 Si queremos estimar $g(\theta) = \mu$ se puede considerar $\hat{g}(X) = \frac{1}{n}\sum{x_{i}}$ porque :
 \begin{align*} %% Revisar esto último
-\mathbb{E}_{\theta}(\hat{g}(X)) = \mathbb{E}_{\theta}\left(\frac{1}{n}\sum x_{i}\right) = \frac{1}{n}\mathbb{E}_{\theta}(X_{i})\quad \text{con}\\
+\mathbb{E}_{\theta}(\hat{g}(X)) = \mathbb{E}_{\theta}\left(\frac{1}{n}\sum x_{i}\right) = \frac{1}{n}\sum\mathbb{E}_{\theta}(X_{i})\quad \text{con}\\
 \mathbb{E}_{\theta}(X_{i})= \int_{-\infty}^{\infty}{\frac{x}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}dx} = \mu
 \end{align*}
 \end{ej}

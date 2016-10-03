@@ -100,7 +100,7 @@ También $T(X)$ se llama estadístico.\\
 La ley de $X$ condicionada en $T(X)$ no depende de $\theta$, $\Leftrightarrow \mathbb{P}_{\theta}(X \in A|T(X)) = H(A,T(X))$.\\
 Famoso teorema de factorización: $f_{\theta}(X) = g_{\theta}((T(x)))h(x)$.\\
 \begin{align*}
-\mathbb{\theta}(X\in A) &= \int_{A}f_{\theta}(x)dx, \forall A \in \mathcal{B}(\mathfrak{X})\\
+\mathbb{P}_{\theta}(X\in A) &= \int_{A}f_{\theta}(x)dx, \forall A \in \mathcal{B}(\mathfrak{X})\\
 &= \sum_{X\in A}f_{\theta}(X)
 \end{align*}
 
@@ -154,7 +154,7 @@ Diremos que $T(X)$ es completo si:
 \end{align*}
 También se dice que la familia de las leyes inducidas $\{\mathbb{P}_{\theta,T}\colon \theta \in \Theta\}$ es completa.\\
 
-Una manera elegante de enuncuar la completitud de $T(X)$ es diciendo que ``no existen estimadores no triviales insesgados de 0 que sean función de $T(X)$'' (un estimador insesgado de 0 es cualquier función $g(X)$ que tenga $\mathbb{E}_{\theta}(\tilde{g}(X))=0, \forall \theta \in \theta$.\\
+Una manera elegante de enuncuar la completitud de $T(X)$ es diciendo que ``no existen estimadores no triviales insesgados de 0 que sean función de $T(X)$'' (un estimador insesgado de 0 es cualquier función $g(X)$ que tenga $\mathbb{E}_{\theta}(\tilde{g}(X))=0, \forall \theta \in \theta$).\\
 
 Se dice que $T$ es acotadamente completo si la definición anterior solo aplica para funciones $g$ acotadas.\\
 Si $T(X)$ es suficiente y también completo, entonce decimos que $T(X)$ es suficiente-completo.
@@ -163,7 +163,7 @@ Si $T(X)$ es suficiente y también completo, entonce decimos que $T(X)$ es sufic
 \end{teo}
 Si tenemos dos estimadores insesgados de $g(\theta)$, ambos función de $T(X)$, digamos $\hat{g}_{1}(X)$ y $\hat{g}_{2}(X)$, entonces $\mathbb{E}_{\theta}(\hat{g}_{1}(X)-\hat{g}_{2}(X)) = 0, \forall \theta \in \Theta$. Como  $T(X)$ es completo, entonces  $\mathbb{P}_{\theta}(\hat{g}_{1}(X) = \hat{g}_{2}(X)) = 1, \forall \theta \in \Theta$.\\
 
-Se muestra que $\mathbb{V}_{\theta}(\hat{g}(T(X)))$ es uniformemente menor que la $\mathbb{B}$ de cualquier otro insesgado (EIVUM):
+Se muestra que $\mathbb{V}_{\theta}(\hat{g}(T(X)))$ es uniformemente menor que la $\mathbb{V}$ de cualquier otro insesgado (EIVUM):
 
 \begin{obs}
 Completitud (acotada) $\Rightarrow$ minimalidad (Bahadur)
@@ -178,11 +178,11 @@ f_{\theta}(x) = \theta^{\sum x_{i}}(1-\theta)^{n-\sum x_{i}}, x \in \{0,1\}^n, \
 \end{align*}
 Sea $T(X) = \sum_{i=1}^n X_{i}, X = (X_{1},X_{2},\ldots,X_{n})$ iids Bernoulli.\\
 Sabemos que $T(X)$ es suficiente minimal, pero no si es completo o no.\\
-¿Cuál es la familia $\mathbb{P}_{\theta,T}$? Fácil, pues $\sum X_{i}$ es binomial, es decir, $\mathbb{P}_{\theta}(T(X)=t) 0 \binom{n}{t} \theta^t (1-\theta)^{n-t}, t \in \{0,1,\ldots,n\}$.\\
+¿Cuál es la familia $\mathbb{P}_{\theta,T}$? Fácil, pues $\sum X_{i}$ es binomial, es decir, $\mathbb{P}_{\theta}(T(X)=t) = \binom{n}{t} \theta^t (1-\theta)^{n-t}, t \in \{0,1,\ldots,n\}$.\\
 Sea $g$ una función definida en $\{0,1,\ldots,n\}$
 \begin{align*}
 \mathbb{E}_{\theta}(g(T(X))) &= \sum_{k=0}^n g(k) \binom{n}{k} \theta^k(1-\theta)^k\\
-&=(1-\theta)^n \sum_{k=0}^n g(k) \binom{n}{k} (\frac{\theta}{1-\theta})^k\\
+&=(1-\theta)^n \sum_{k=0}^n g(k) \binom{n}{k} \left(\frac{\theta}{1-\theta}\right)^k\\
 (impongo)\ &= 0, \forall \theta \in \Theta = [0,1)
 \end{align*}
 Con esto nos queda un polinomio de grado $n$ en $[0,\infty)$ que se anula,por lo que se concluye que es la función 0.\\
