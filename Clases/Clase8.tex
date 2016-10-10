@@ -25,6 +25,8 @@
 %\captionsetup[table]{labelformat=empty}
 \captionsetup[subfigure]{labelformat=empty}
 \usepackage{cancel}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 %====================================
 
 \usepackage{fancyhdr}
@@ -172,5 +174,67 @@ Se introduce la variable llamada $t$ de student.\\
  \section{Test de Hipótesis}
  Veremos la teoría de Neyman-Pearson.\\
  
- Comenzamos con el modelo paramétrico
+ Comenzamos con el modelo paramétrico $\mathcal{P} = \{\mathbb{P}_{\theta}\colon \theta \in \Theta\}$ y consideramos una partición en dos $\Theta_{0}$ y $\Theta_{1}$.\\
+ 
+ El problema es ``Adivinar'' (estimar) en cual de los dos conjuntos está el verdadero $\theta$, ya no importa estimar $\theta$, sino que asignarlo a uno de estos conjuntos.\\
+ 
+ Tenemos la observación $X$ y queremos decidir, usando $X$ si postulamos $\theta \in \Theta_{0}$ o bien $\theta \in \Theta_{1}$.
+ 
+ \begin{ej}
+ Se lanza una moneda $n$ veces independientemente.\\
+ Tenemos modelo clásico.
+ \begin{align*}
+ \mathbb{P}_{\theta}(X=x) = \theta^{\sum X_{i}}(1-\theta)^{n-\sum X_{i}},\ X_{i}\in \{0,1\}
+ \end{align*}
+ Sea $\Theta = [0,1], \Theta_{0} = [1/2-\epsilon, 1/2+\epsilon], \Theta_{1} = \Theta \setminus \Theta_{0}$.\\
+ Se plantea la siguiente estrategia de decisión:\\
+ Si $\bar{X}\in \Theta_{0}$ declaro $\theta \in \Theta_{0}$, si no $\theta \Theta_{1}$
+ \end{ej}
+ \section{Algunas definiciones}
+ Se consideran dos hipótesis asociadas a la partición $\{\Theta_{0},\Theta_{1}\}$ de $\Theta$.\\
+ La hipótesis ``nula'' se designa por $H_{0}$, corresponde a $\Theta_{0}$ y escribimos $H_{0}\colon \theta \in \Theta_{0}$.\\
+ La hipótesis ``alternativa'' se designa por $H_{1}$, corresponde a $\Theta_{1}$ y escribimos $H_{1}\colon \theta \in \Theta_{1}$.\\
+ 
+ Al plantear el problema de test de hipótesis se dice que tenemos $H_{0}\colon \theta \in \Theta_{0}$ versus $H_{1}\colon \theta \in \Theta_{1}$.\\
+ 
+ Disponemos de la observación $X$ pero necesitamos una regla de desición (que llamaremos test) donde participe $X$.\\
+ 
+ Un test es una función $\Phi: \mathfrak{X}\mapsto\{0,1\}$. Esta función se aplica como sigue:
+ \begin{itemize}
+ \item Si $\Phi(x)=0$ entonces no rechazamos $H_{0}$ (nos quedamos con $H_{0}$).
+ \item Si $\Phi(x)=1$ entonces rechazamos $H_{0}$ (nos quedamos con $H_{1}$).
+ \end{itemize}
+ Tradicionalmente se define
+ \begin{align*}
+ \mathbb{R}_{\Phi}= \{x\in \mathfrak{X}\colon \Phi(x)=1\} = \Phi^{-1}(1)
+ \end{align*}
+ y se llama región crítica o de rechazo del test $\Phi$. $\mathbb{R}_{\Phi}$ es la colección de todas las observaciones que llevan a rechazar $H_{0}$.
+ \subsection{Errores}
+ Reconocemos dos tipos de errores en este contexto.
+ \begin{enumerate}
+ \item Diremos que se comete error tipo I, cuando se rechaza $H_{0}$, pero $H_{0}$ es cierto.
+ \item Diremos que se comete error tipo II, cuando no se rechaza $H_{0}$, pero $H_{0}$ es falsa.
+ \end{enumerate}
+ \begin{center}
+ \begin{tabular}{c|c|c}
+ & $H_{0}$ & $H_{1}$ \\ \hline
+ Rechazar $H_{0}$ & I & \checkmark \\ \hline
+ No rechazar $H_{0}$ & \checkmark & II
+ \end{tabular}
+  \end{center}
+ Lo que queremos es encontrar test $\Phi$ con baja probabilidad de error.\\
+ Primero veamos la probabilidad de rechazar.\\
+ Recordemos que se rechaza $H_{0}$ si $\Phi(x) = 1$ o si $x \in \mathbb{R}_{\theta}$.Entonces:
+ \begin{align*}
+ \alpha_{\Phi}(\theta) := \mathbb{P}_{x\in \mathbb{R}_{\theta}} = \mathbb{E}_{\theta}(\Phi(x))
+ \end{align*}
+ Si $\theta \in \Theta_{0}$, entonces $\alpha_{\Phi}(\theta)$ es la probabilidad de rechazar cuando no debemos, luego quisieramos que $\alpha_{\Phi}(\theta)\approx 0, \forall \theta \in \Theta_{0}$. Con esto controlamos el error tipo I.\\
+ 
+ Por otra parte si $\theta \in \Theta_{1}$ quisieramos que $\alpha_{\Phi}(\theta)\approx 1$.\\
+ 
+ Así, el test ideal $\Phi$ debería tener $\alpha(\theta)= 0 \forall \theta \in \Theta_{0}$ y $\alpha(\theta)=1 \forall \theta \in \Theta_{1}$.\\
+ Se demuestra que no existe el test ideal (salvo casos artificiales) y buscamos alternativas:
+ \begin{center}
+ \includegraphics[scale=0.2]{imagenes/test1.jpg}
+ \end{center}
 \end{document}
