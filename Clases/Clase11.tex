@@ -1,0 +1,124 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage[left=1.5cm,top=1.5cm,right=1.5cm, bottom=1.5cm,letterpaper, includeheadfoot]{geometry}
+
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lmodern,url}
+\usepackage{paralist} %util para listas compactas
+\usepackage{xcolor}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+
+%========PAQUETES AGREGADOS===========
+%Pseudocodigo
+\usepackage{pseudocode}
+\usepackage[portuguese, boxruled]{algorithm2e}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\captionsetup[table]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=empty}
+\usepackage{cancel}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+%====================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead{\footnotesize\itshape\bfseries\rightmark}
+\rhead{\footnotesize\itshape\bfseries\leftmark}
+}
+
+
+% macros
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\BigO}{\mathcal{O}}
+%Teoremas, Lemas, etc.
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+\newtheorem{lem}{Lema}
+\newtheorem{prop}{Proposición}
+\newtheorem{cor}{Corolario}
+\newtheorem{obs}{Observación}
+\newtheorem{ej}{Ejemplo}
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}}
+\renewenvironment{proof}{{\bfseries \noindent Demostración}}{ \qed \\}
+
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definición}
+% fin macros
+
+
+\newcommand{\catnum}{11} %numero de catedra
+\newcommand{\fecha}{13 de Septiembre 2016 }
+
+%%%%%%%%%%%%%%%%%%
+
+%Macros para este documento
+\newcommand{\cin}{\operatorname{cint}}
+
+
+
+\begin{document}
+%Encabezado
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+\vspace*{-1.2 cm}
+\begin{minipage}{0.6\textwidth}
+\begin{flushleft}
+\hspace*{-0.5cm}\textbf{MA3402-1 Estadística. Primavera 2016}\\
+\hspace*{-0.5cm}\textbf{Profesor:} Raul Gouet\\
+\hspace*{-0.5cm}\textbf{Escriba:} Manuel Cáceres\\
+\hspace*{-0.5cm}\textbf{Fecha:} \fecha
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{flushright}
+\includegraphics[scale=0.3]{imagenes/fcfm_dcc}
+\end{flushright}
+\end{minipage}
+\bigskip
+%Fin encabezado
+
+\begin{center}
+\LARGE\textbf{Clase \catnum}
+\end{center}
+\section{Hipótesis Compuestas}
+Recordemos quel TNP es el óptimo para el problema del tipo $H_{0}: \theta = \theta_{0}$ vs $H_{1}: \theta = \theta_{1}$ con $\Theta = \{\theta_{0}, \theta_{1}\}$ en el sentido de tener la mejor potencia posible en la clase $\tau_{\alpha}$ (de nivel $\alpha$).\\
+	
+\textbf{¿Cómo abordar los problemas más realistas (cercanos a la aplicaciones) donde $H_{0}$ o $H_{1}$ o ambos son compuestas?}\\
+
+Veremos que el TNP puede servir (sirve) en problemas compuestos unilaterales.\\
+Recordemos que el TNP $\phi^*$ para $H_{0}: \mu = \mu_{0}$ vs $H_{1}: \mu = \mu_{1}, \mu_{1}>\mu_{0}$ en el modelo gaussiano, basados en la misma muestra iid $X_{1},\ldots,X_{n}$.\\
+Sabemos que $\phi^*(X)=1 \Leftrightarrow \bar{X} \ge \mu_{0} + \frac{\sigma}{\sqrt{n}}\phi^{-1}(1-\alpha)$.\\
+Sabemos que $\phi^* \in \tau_{\alpha} (\alpha_{\phi^*}(\mu_{0}) = \alpha)$ y que:
+\begin{align*}
+\alpha_{\phi^*}(\mu_{1}) = \underbrace{(1-\phi)}_{funcion} \left(\frac{\sqrt{n}(\mu_{0}-\mu_{1})}{\sigma}+ \phi^{-1}(1-\alpha)\right)
+\end{align*}
+con $\sigma_{\phi^*}(\mu_{1}) \ge \alpha_{\phi}(\mu_{1}), \forall \phi \in \tau_{\alpha}$.\\
+
+Pensemos en el problema unilateral (una cola) $P'$, $H_{0}: \underbrace{\mu = \mu_{0}}_{simple}$ vs $H_{1}: \underbrace{\mu > \mu_{0}}_{compuesta}$, se entiende que $\Theta = [\mu_{0},\infty[$.\\
+Veamos que pasa si usamos el TNP $\phi^*$ en este problema. Primero notemos que $\phi^* \in \tau_{\alpha}$ (los tests de nivel $\alpha$ para $P'$).\\
+\begin{align*}
+ \phi \in \tau_{\alpha} & \Leftrightarrow \mathbb{P}_{\mu}(X\in \mathbb{R}_{\phi}) \le \alpha \forall \mu \in \Theta_{0} = \{\mu_{0}\}\\
+ & \Leftrightarrow \mathbb{P}_{\mu_{0}}(X\in \mathbb{R}_{\phi}) \le \alpha
+\end{align*}
+Por definición de TNP sabemos que $\alpha_{\phi^*}(\mu) \ge \alpha_{\phi}(\mu), \forall \mu \ge \mu_{0}, \forall \phi \in \tau_{\alpha}$, de donde se ve que $\phi^*$ es test UMP de nivel $\alpha$ para el problema $P'$. SALIÓ GRATIS!\\
+
+Se ha resuelto el problema de encontrar test UMP para $P'$ $H_{0}: \mu=\mu_{0}$ vs $H_{1}: \mu>\mu_{0}$.\\
+Pasemos al problema $P''$ $H_{0}: \mu \le \mu_{0}$ vs $H_{1}: \mu>\mu_{0}$ y veamos si $\phi^*$ sigue valiendo en este caso.\\
+La clase $\tau_{\alpha}$ tiene los $\phi$ tales que:
+\end{document}
