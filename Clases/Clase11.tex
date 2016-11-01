@@ -121,4 +121,69 @@ Por definición de TNP sabemos que $\alpha_{\phi^*}(\mu) \ge \alpha_{\phi}(\mu),
 Se ha resuelto el problema de encontrar test UMP para $P'$ $H_{0}: \mu=\mu_{0}$ vs $H_{1}: \mu>\mu_{0}$.\\
 Pasemos al problema $P''$ $H_{0}: \mu \le \mu_{0}$ vs $H_{1}: \mu>\mu_{0}$ y veamos si $\phi^*$ sigue valiendo en este caso.\\
 La clase $\tau_{\alpha}$ tiene los $\phi$ tales que:
+\begin{align*}
+\sup_{\mu\le\mu_{0}}\mathbb{P}_{\mu}(\phi(X)=1) \le \alpha & \land \phi^* \in \tau_{\alpha}\\
+\sup_{\mu\le \mu_{0}} \mathbb{E}_{\mu}(\phi^*(X)) &= \sup_{\mu\le \mu_{0}} \underbrace{\mathbb{P}_{\mu}(\bar{X}\le \frac{\sigma}{\sqrt{n}}\phi^{-1}(1-\alpha) + \mu_{0})}_{\alpha_{\phi^*}(\mu) = (1-\phi)\left(\frac{\sqrt{n}}{\sigma}(\mu_{0}-\mu_{1})+ \phi^{-1}(1-\alpha)\right)} 
+\end{align*}
+$\alpha_{\phi^*}(\mu)$ es función creciente y continua de $\mu$ por lo que alcanza el supremo en $\mu_{0}$.\\
+$\mathbb{P}_{\mu_{0}}(\ldots) \le \alpha$ es cierto, pues $\mathbb{P}(\phi^*(X)=1)=1$ así fue deducido.\\
+Como en el rango $\mu_{0},\infty)$ el gana a $\phi^*$,entonces resulta que es UMP de nivel $\alpha$ de nivel $P''$.\\
+
+Existen muchos problemas unilaterales (con parametro $\mathbb{R}$) donde el TNP puede ser usado y constituye un test UMP.\\
+
+Por suspuesto podemos explorar problemas unilaterales del lado izquierdo, por ejemplo: $H_{0}: \mu = \mu_{0}$ versus $H_{1}: \mu<\mu_{1}$ o $H_{0}: \mu \ge \mu_{0}$ versus $H_{1}: \mu=\mu_{1}$.\\
+
+En el caso $H_{0}: \mu=\mu_{0}$ versus $H_{1}: \mu=\mu_{1} (\mu_{1}<\mu_{0})$ tiene un TNP $\phi_{i}^*(X)=1 \Leftrightarrow \bar{X}\le k_{\alpha}$(el subíndice i indica por la izquierda).\\
+
+Se muestra que $\phi^*_{i}$ es UMP en todos estos casos unilaterales.\\
+
+Que pasa en el siguiente oriblema ``bilateral'': $H_{0}: \underbrace{\mu=\mu_{0}}_{simple}$ versus $H_{1}: \underbrace{\mu\not = \mu_{1}}_{compuesta}, \Theta = \mathbb{R}, \Theta_{0}=\{\mu_{0}\}$ .\\
+
+En este problema el TNP $\phi^*_{i}$ y $\phi^*_{d}$ fracasan estrepitosamente.\\
+Si usamos $\phi_{d}^*$, entonces rechazamos $H_{0}:\mu=\mu_{0}$ si $\bar{X}\ge \frac{\sigma}{\sqrt{n}}\phi^{-1}(1-\alpha) + \mu_{0}$ lo cual estaría bien en el rango $(\mu_{0},\infty)$ de $H_{1}$.\\
+
+¿Qué pasa con $\phi^*_{d}$ en $(-\infty, \mu_{0})$? Bueno, ocurre que la potencia $\alpha_{\phi^*_{d}}(\mu) \le \alpha$, lo cual es absurdo.\\
+
+¿Sería $\phi^*_{d}$ UMP para $H_{0}: \mu=\mu_{0}$ versus $H_{1}: \mu \not = \mu_{1}$? La respuesta es no pues el otro TNP $\phi^*_{i}$ el gana a $\phi^*_{d}$ en $(-\infty, \mu_{0})$.\\
+
+Sabiendo que el TNP es único (escencialmente) entonces concluímos que no existe test UMP de nivel $\alpha$ para $H_{0}: \mu = \mu_{0}$ versus $H_{1}: \mu \not = \mu_{0}$.\\
+
+¿Qué hacemos entonces?\\
+Es razonable pensar que rechazamos $H_{0}: \mu = \mu_{0}$ en beneficio de $H_{1}: \mu \not = \mu_{0}$ cuando $|\bar{X}-\mu_{0}|$ sea grande. Definimos el test $\phi$ tal que $\phi(X)=1 \Leftrightarrow |\bar{X}-\mu_{0}|\ge k_{\alpha}$ y lo hacemos de nivel $\alpha$, esto no es un UMP (no existe). Calculamos $k_{\alpha}$ resolviendo:
+\begin{align*}
+&\mathbb{P}_{\mu_{0}}\left(|\bar{X}-\mu_{0}|>k_{\alpha}\right) = \alpha\\
+ \Leftrightarrow & \mathbb{P}_{\mu_{0}}\left(\frac{|\bar{X}-\mu_{0}|}{\sigma/\sqrt{n}}\ge k_{\alpha}\frac{\sqrt{n}}{\sigma}\right) = \alpha
+\end{align*}
+\begin{center}
+\includegraphics[scale=0.1]{imagenes/bilateral.jpg}
+\end{center}
+\begin{align*}
+\Rightarrow & \frac{k_{\alpha}\sqrt{n}}{\sigma} = \phi^{-1}(1-\alpha/2)
+\end{align*}
+Luego, $\phi$ rechaza si $|\bar{X}-\mu_{0}| \ge \frac{\sigma}{\sqrt{n}}\phi^{-1}(1-\alpha/2) \Leftrightarrow \mu_{0} \not \in [\bar{X}-\frac{\sigma}{\sqrt{n}}\phi^{-1}(1-\alpha/2), \bar{X}+\frac{\sigma}{\sqrt{n}}\phi^{-1}(1-\alpha/2)]$.\\
+
+Este test razonable de nivel $\alpha$ no es UMP, pero se puede demostrar que si es UMP en la subclase de los tests insesgados de nivel $\alpha$.
+\section{Test insesgado}
+Un test cuya probabilidad de rechazar bajo $H_{1}$ e s mayor o iual que la probabilidad de rechazar bajo $H_{0}$ se llama insesgado.\\
+Si $\phi$ es de nivel $alpha$ para $H_{0}: \theta \in \Theta_{0}$ versus $H_{1}: \theta \in \Theta_{1}$ resulta que $\alpha_{\phi}(\theta) \ge \alpha, \forall \theta \in \Theta_{0}$. Su $\phi$ es insesgado entonces $\alpha_{\phi}(\theta) \ge \alpha, \forall \theta \in \Theta_{1}$.\\
+
+Vamos hacia un método general para diseñar tests cuyas cualidades no están garantizadas. Se trata de los tets de razón de verosimilitud.\\
+La idea es calcular los EMV del parámetro $\theta$ sujeto a las restricciones que definen $H_{0} y H_{1}$.\\
+Consideramos $H_{0}: \theta \in \Theta_{0}$ versus $H_{1}: \theta \in \Theta_{1}$ y definimos:
+\begin{align*}
+\lambda(X) = \frac{\sup_{\theta \in \Theta_{1}} f_{\theta}(X)}{\sup_{\theta \in \Theta_{0}} f_{\theta}(X)}
+\end{align*}
+Sea $\mathbb{R}=\{x\in\mathfrak{X}; \lambda(X) \ge k_{\alpha}\}$, donde $k_{\alpha}$ se calcula de manera que
+\begin{align*}
+\sup_{\theta \in \Theta_{0}} \mathbb{P}_{\theta}\left(\lambda(X) \ge k_{\alpha}\right) \le \alpha
+\end{align*}
+y $\phi$ se define como $\phi(X) = \Leftrightarrow x \in \mathbb{R}$.\\
+
+Es TNP coincide con el test de razón de verosimilitud (TRV) con la salvedad de igualar a $\alpha$ la probabilidad de error tipo I.\\
+
+El primer ejemplo que estudiaremos es:
+\begin{itemize}
+\item $H_{0}: \mu = \mu_{0}$ versus $H_{1}: \mu > \mu_{0}$ (que ya sabemos resolver y existe UMP)
+\item $H_{0}: \mu = \mu_{0}$ versus $H_{1}: \mu \not =\mu_{0}$
+\end{itemize}
 \end{document}
