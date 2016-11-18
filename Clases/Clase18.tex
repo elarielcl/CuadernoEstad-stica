@@ -1,0 +1,136 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[activeacute,spanish]{babel}
+\usepackage[left=1.5cm,top=1.5cm,right=1.5cm, bottom=1.5cm,letterpaper, includeheadfoot]{geometry}
+
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lmodern,url}
+\usepackage{paralist} %util para listas compactas
+\usepackage{xcolor}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+
+%========PAQUETES AGREGADOS===========
+%Pseudocodigo
+\usepackage{pseudocode}
+\usepackage[portuguese, boxruled]{algorithm2e}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\captionsetup[table]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=empty}
+\usepackage{cancel}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+%====================================
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead{\footnotesize\itshape\bfseries\rightmark}
+\rhead{\footnotesize\itshape\bfseries\leftmark}
+}
+
+
+% macros
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\BigO}{\mathcal{O}}
+%Teoremas, Lemas, etc.
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}
+\newtheorem{lem}{Lema}
+\newtheorem{prop}{Proposición}
+\newtheorem{cor}{Corolario}
+\newtheorem{obs}{Observación}
+\newtheorem{ej}{Ejemplo}
+\renewcommand{\qedsymbol}{\rule{0.7em}{0.7em}}
+\renewenvironment{proof}{{\bfseries \noindent Demostración}}{ \qed \\}
+
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definición}
+% fin macros
+
+
+\newcommand{\catnum}{18} %numero de catedra
+\newcommand{\fecha}{8 de Noviembre 2016 }
+
+%%%%%%%%%%%%%%%%%%
+
+%Macros para este documento
+\newcommand{\cin}{\operatorname{cint}}
+
+
+
+\begin{document}
+%Encabezado
+\fancyhead[L]{Facultad de Ciencias Físicas y Matemáticas}
+\fancyhead[R]{Universidad de Chile}
+\vspace*{-1.2 cm}
+\begin{minipage}{0.6\textwidth}
+\begin{flushleft}
+\hspace*{-0.5cm}\textbf{MA3402-1 Estadística. Primavera 2016}\\
+\hspace*{-0.5cm}\textbf{Profesor:} Raul Gouet\\
+\hspace*{-0.5cm}\textbf{Escriba:} Manuel Cáceres\\
+\hspace*{-0.5cm}\textbf{Fecha:} \fecha
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{flushright}
+\includegraphics[scale=0.3]{imagenes/fcfm_dcc}
+\end{flushright}
+\end{minipage}
+\bigskip
+%Fin encabezado
+
+\begin{center}
+\LARGE\textbf{Clase \catnum}
+\end{center}
+Veremos un ejemplo de Teoría de decisión aplicado a test de hipótesis.\\
+
+Recordemos los elementos: $\underbrace{f(X|\theta)}_{sale\ X} , \underbrace{\pi(\theta)}_{priori}, \underbrace{L(\cdot,\cdot)}_{f\ de\ perdida}, \underbrace{\delta(\cdot)}_{regla\ de\ decision}$
+\begin{align*}
+\delta\colon \mathfrak{X} \mapsto D, L(\cdot,\cdot)\colon D \times \Theta \mapsto \mathbb{R}
+\end{align*}
+
+Riesgo
+\begin{align*}
+R_{\delta}(\theta) = \mathbb{E}_{\theta}(L(\delta(X),\theta)) = \int_{\mathfrak{X}} L(\delta(X), \theta) f(X|\theta) dx
+\end{align*}
+
+$\delta$ domina a $\delta'$ si $R_{\delta}(\theta) \le R_{\delta'}(\theta) (\exists \theta con <)$\\
+
+$\delta$ es admisible si $\not \exists \delta'$ que la domina.\\
+
+Regla minimax (muy conservadora), criterio $\mapsto \max_{\theta}R_{\delta}(\theta)$.\\
+
+$\delta$ es mejor que $\delta'$ si $\max_{\theta}R_{\delta}(\theta) \le \max_{\theta}R_{\delta'}(\theta)$.\\
+
+$\delta$ es minimax si $\max_{\theta}R_{\delta}(\theta) \le \max_{\theta}R_{\delta'}(\theta) \forall \delta' \ldots$
+
+\section{Regla de Bayes}
+ Riesgo medio : $\bar{R_{\delta}} = \int_{\Theta}R_{\delta}(\theta)\pi(\theta)d\theta$.\\
+ 
+ Regla de Bayes $\delta$: $\bar{R_{\delta}} \le \bar{R_{\delta'}}, \forall \delta' \in AlgunaColeccion$.\\
+ 
+ Un ejemplo de esto es el EIVUM.\\
+ 
+ El problema $\min_{\delta}\bar{R_{\delta}}$ es un problema de cálculo variacional(dificil).\\
+ 
+ Se puede reducir a $\infty$ problemas en $\mathbb{R}$, via Fubini.\\
+ 
+ \begin{align*}
+ \bar{R_{\delta}} &= \int_{\Theta}R_{\delta}(\theta)\pi(\theta)d\theta 0 \int_{\Theta}\int_{\mathfrak{X}} L(\delta(X),\theta) f(X|\theta)dx \pi(\theta)d\theta\\
+ &= \int_{\mathfrak{X}}\left(\int_{\theta}\right)
+ \end{align*}
+\end{document}
