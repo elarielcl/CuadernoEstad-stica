@@ -101,11 +101,11 @@ Elementos:
 \begin{itemize}
 \item Modelo paramétrico $\mathcal{P} = \{\mathbb{P}_{\theta}\colon \theta \in \Theta\}$
 \item Partición de $\Theta$ : $\Theta_{0},\Theta_{1}$
-\item Hipótesos en competencia: $H_{0}: \theta \in \Theta_{0}$ versus $H_{1}: \theta \in \Theta_{1}$
+\item Hipótesis en competencia: $H_{0}: \theta \in \Theta_{0}$ versus $H_{1}: \theta \in \Theta_{1}$
 \item Test de hipótesis: $\Phi: \mathfrak{X} \mapsto \{0,1\}$, donde $\Phi(x) = 1\Rightarrow$ rechazar $H_{0}$, $\Phi(x) = 1\Rightarrow$ no rechazar
 \item Región crítica o de rechazo $\mathbb{R}_{\Phi} = \Phi^{-1}(1) = \{x \in \mathbb{X}\colon \Phi(x) = 1\}$
 \item Error tipo I (rechazo $H_{0}$ siendo cierto) y tipo II (no rechazo $H_{0}$, siendo falsa)
-\item Probabilidad de rechazo como función de $\theta$, $\alpha_{\Phi}(\theta) = \mathbb{P}_{\theta}(x \in \mathbb{R}_{\Phi}) = \mathbb{E}_{\theta}(\Phi)(x))$, con $\alpha_{\Phi}$ discriminamos entre distintos test. La situación ideal sería que $\alpha_{\Phi}(\theta) \approx 0$ si $\theta \in \Theta_{0}$ y $\alpha_{\Phi}(\theta) \approx 1$ si $\theta \in \Theta_{1}$
+\item Probabilidad de rechazo como función de $\theta$, $\alpha_{\Phi}(\theta) = \mathbb{P}_{\theta}(x \in \mathbb{R}_{\Phi}) = \mathbb{E}_{\theta}(\Phi(x))$, con $\alpha_{\Phi}$ discriminamos entre distintos test. La situación ideal sería que $\alpha_{\Phi}(\theta) \approx 0$ si $\theta \in \Theta_{0}$ y $\alpha_{\Phi}(\theta) \approx 1$ si $\theta \in \Theta_{1}$
 \end{itemize}
 El problema es que al disminuir $\alpha_{\Phi}(\theta), \theta \in \Theta_{0}$ también disminuyo $\alpha_{\Phi}(\theta), \theta \in \Theta_{1}$.\\
 
@@ -117,7 +117,7 @@ Con esto se define la clase de test de nivel $\alpha \in [0,1]$
 \end{defi}
 \begin{defi} El tamaño de $\Phi$ se define como $\sup_{\theta \in \Theta_{0}} \alpha_{\Phi}(\theta)$
 \end{defi}
-Designemos $\tau_{\alpha} = \{\Phi\colon \Phi\ test\ y\ \alpha\_{Phi}(\theta) \le \alpha, \forall \theta \in \Theta_{0}\}$, la colección de todos los test de nivel $\alpha \in [0,1]$
+Designemos $\tau_{\alpha} = \{\Phi\colon \Phi\ test\ y\ \alpha_{Phi}(\theta) \le \alpha, \forall \theta \in \Theta_{0}\}$, la colección de todos los test de nivel $\alpha \in [0,1]$
 \section{Comparación de tests}
 Digamos que $\Phi_{1}$ es mejor que $\Phi_{2}$ si 
 \begin{align*}
@@ -137,14 +137,14 @@ Se dice que $\Phi^* \in \tau_{\alpha}$ es un test UMP (de nivel $\alpha$) si
 \end{defi}
 \textbf{PROBLEMA: } Dados $H_{0}, H_{1}$ encontrar el/los test UMP de nivel $\alpha$.\\
 
-Vamos a explorar primero un caso de interés académico que es la base ára explorar otras situaciones más complejas.\\
+Vamos a explorar primero un caso de interés académico que es la base para explorar otras situaciones más complejas.\\
 Consideremos $H_{0}: \theta \in \Theta_{0}$ versus $H_{1}: \theta \in \Theta_{1}$.\\
 
 Si $\Theta_{i} = \{\theta_{i}\}$, diremos que $H_{i}$ es una hipótesis simple, de lo contrario diremos que es compuesta.\\
 
 El lema de Neyman-Pearson presenta un test UMP de nivel $\alpha$ para $H_{0},H_{1}$ hipótesis simple.\\
 
-\textbf{Contexto para el LNP:} Consideremos un modelo paramétrico con $\Theta = \{\theta_{0}, \theta_{1}\}, \theta{0}\not =\theta_{1}$ y dominado, es decir, $X$ tiene densidad $f_{\theta}(x)$(discreta o continua). Adoptemos la notación $f_{i}(x) := f_{\theta_{i}}(x)$.\\
+\textbf{Contexto para el LNP:} Consideremos un modelo paramétrico con $\Theta = \{\theta_{0}, \theta_{1}\}, \theta_{0}\not =\theta_{1}$ y dominado, es decir, $X$ tiene densidad $f_{\theta}(x)$(discreta o continua). Adoptemos la notación $f_{i}(x) := f_{\theta_{i}}(x)$.\\
 A continuación presentamos el célebre test de Neyman-Pearson(NP) de nivel $\alpha$.\\
 
 Dado $\alpha \in [0,1]$ se define el conjunto $\mathbb{R}^* = \{x\in\mathfrak{X}\colon f_{1}(x) \ge k_{\alpha}f_{0}(x)\}$, donde $k_{\alpha}$ es una constante que se calcula imponiendo una restricción para el test $\Phi^*$(TNP), cuya región crítica es $\mathbb{R}^*$ .\\
@@ -177,9 +177,9 @@ Notamos que
 Luego
 \begin{align*}
 \alpha_{\Phi^*}(\theta_{1}) - \alpha_{\Phi}(\theta_{1}) &= \mathbb{P}_{\theta_{1}}(x\in \mathbb{R}^* \cap \bar{\mathbb{R}}) - \mathbb{P}_{\theta_{1}}(x\in \mathbb{R} \cap \bar{\mathbb{R}^*})\\
-&=\int_{\mathbb{R}^* \cap \bar{\mathbb{R}}} {f_{1}(x)dx} - \int_{\mathbb{R}^* \cap \bar{\mathbb{R}^*}} {f_{1}(x)dx}\\
-&\ge \int_{\mathbb{R}^* \cap \bar{\mathbb{R}}} {k_{\alpha}f_{0}(x)dx} - \int_{\mathbb{R}^* \cap \bar{\mathbb{R}^*}} {k_{\alpha}f_{0}(x)dx}\\
-&= k_{\alpha}\left(\int_{\mathbb{R}^* \cap \bar{\mathbb{R}}} {f_{0}(x)dx} - \int_{\mathbb{R}^* \cap \bar{\mathbb{R}^*}} {f_{0}(x)dx}\right)\\
+&=\int_{\mathbb{R}^* \cap \bar{\mathbb{R}}} {f_{1}(x)dx} - \int_{\mathbb{R} \cap \bar{\mathbb{R}^*}} {f_{1}(x)dx}\\
+&\ge \int_{\mathbb{R}^* \cap \bar{\mathbb{R}}} {k_{\alpha}f_{0}(x)dx} - \int_{\mathbb{R} \cap \bar{\mathbb{R}^*}} {k_{\alpha}f_{0}(x)dx}\\
+&= k_{\alpha}\left(\int_{\mathbb{R}^* \cap \bar{\mathbb{R}}} {f_{0}(x)dx} - \int_{\mathbb{R} \cap \bar{\mathbb{R}^*}} {f_{0}(x)dx}\right)\\
 &=k_{\alpha}\left(\underbrace{\mathbb{P}_{\theta_{0}}(x\in\mathbb{R}^*)}_{=\alpha}-\underbrace{\mathbb{P}_{\theta_{0}}(x\in\mathbb{R})}_{\le \alpha}\right)\\
 &\ge 0
 \end{align*}
@@ -187,17 +187,17 @@ Luego
 \begin{ej}
 Sea $X=(X_{1},X_{2},\ldots,X_{n})$ iid $N(\mu,\sigma^)$, $\sigma$ conocido.\\
 Suponemos que $\mu \in \{\mu_{0},\mu_{1}\}= \Theta$ \\
-Consideremos $H_{0}: \mu = \mu_{0}$ y $H_{1}: \mu = \mu_{1}$ y supongamos $\mu_{0}\not = \mu_{1}$.\\
+Consideremos $H_{0}: \mu = \mu_{0}$ y $H_{1}: \mu = \mu_{1}$ y supongamos $\mu_{0}> \mu_{1}$.\\
 
 Desarrollemos el TNP, tenemos
 \begin{align*}
 f_{\mu_{i}}(x) = f_{i}(x) &= \left(\frac{1}{\sqrt{2\pi}\sigma}\right)^n e^{-\frac{1}{2\sigma^2}\sum_{j=1}^n{(x_{j}-\mu_{i})^2}}\ge 0\\
 \mathbb{R}^* &= \left\lbrace x \in\mathfrak{X}\colon \lambda(x) = e^{-\frac{1}{2\sigma^2}\left(\sum{(x_{j}-\mu_{1})^2}-\sum{(x_{j}-\mu_{0})^2}\right)} \ge k_{\alpha}\right\rbrace
 \end{align*}
-Vamos simpleficando la descripción de los $\mathbb{R}^*$
+Vamos simplificando la descripción de los $\mathbb{R}^*$
 \begin{align*}
 \lambda(x) \ge k_{\alpha} \Leftrightarrow &\sum{(x_{j}-\mu_{1})^2}-\sum{(x_{j}-\mu_{0})^2} \le k_{\alpha}'\\
-\Leftrightarrow & 2\sum{x_{j}(\mu_{0}-\mu_{1})} + n(\mu_{1}^2-\mu_{0}^2) \le k_{\alpha}'\\
+\Leftrightarrow & 2\sum{x_{j}(\mu_{0}-\mu_{1})} + (\mu_{1}^2-\mu_{0}^2) \le k_{\alpha}'\\
 \Leftrightarrow & \frac{1}{n} \sum {nx_{j}(\mu_{0}-\mu_{1})} \le k_{\alpha}''\\
 \Leftrightarrow & \bar{X} \ge k_{\alpha}'''\\
 \Leftrightarrow & x \in \mathbb{R}^*
@@ -210,10 +210,10 @@ Sabemos que si estamos bajo $H_{0}$, $\bar{X}\sim N(\mu_{0},\sigma^2/n)$ y por l
 
 Es decir,
 \begin{align*}
-&\mathbb{P}_{\mu_{0}}(x \in \mathbb{R}^*) = \mathbb{P}_{\mu_{0}}(\frac{\bar{X}-\mu_{0}}{\sigma/\sqrt{n}} \ge \frac{k_{\alpha}'''-\mu_{0}}{\sigma/\sqrt{n}}) = \alpha \\
+&\mathbb{P}_{\mu_{0}}(x \in \mathbb{R}^*) = \mathbb{P}_{\mu_{0}}\left(\frac{\bar{X}-\mu_{0}}{\sigma/\sqrt{n}} \ge \frac{k_{\alpha}'''-\mu_{0}}{\sigma/\sqrt{n}}\right) = \alpha \\
 \Leftrightarrow & 1-\Phi\left(\frac{k_{\alpha}'''-\mu_{0}}{\sigma/\sqrt{n}}\right) = \alpha\\
 \Leftrightarrow & \frac{k_{\alpha}'''-\mu_{0}}{\sigma/\sqrt{n}} = \Phi^{-1}(1-\alpha)\\
-\Rightarrow & k_{\alpha}''' = \sigma/\sqrt{n} \Phi^{-1}(1-\alpha) + \mu_{0}\\
+\Rightarrow & k_{\alpha}''' = \frac{\sigma}{\sqrt{n}} \Phi^{-1}(1-\alpha) + \mu_{0}\\
 \Rightarrow & \mathbb{R}^* = \{x\in\mathfrak{X}\colon \bar{X}\ge\sigma/\sqrt{n} \Phi^{-1}(1-\alpha) + \mu_{0}\}
 \end{align*}
 \end{ej}
