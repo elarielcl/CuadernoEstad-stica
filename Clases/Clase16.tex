@@ -104,12 +104,12 @@ Este es un fenómeno interesante en el que podemos usar como densidad $\pi(\thet
 
 La razón de esto es que una medida positiva (con integral $\infty$) puede reflejar mejor la opinión del analista, que cualquier probabilidad. Además eso conduce a una densidad a posteriori ``legal'', en ocasiones y también, mediante este procedimiento se recuperan algunos resultados de la estadística no bayesiana.\\
 
-Un ejemplo estándar es el caso normal $N(\theta,\sigma^2)$ con $\sigma>0$ conocido $\theta \in \Theta = \mathbb{R}$. Tenemos $X_{1},\ldots,X_{n}$ iid $N(\theta,\sigma^2)$ y definimos $\pi(\theta)0 1  \forall \theta \in \Theta$.\\
+Un ejemplo estándar es el caso normal $N(\theta,\sigma^2)$ con $\sigma>0$ conocido $\theta \in \Theta = \mathbb{R}$. Tenemos $X_{1},\ldots,X_{n}$ iid $N(\theta,\sigma^2)$ y definimos $\pi(\theta)= 1  \forall \theta \in \Theta$.\\
 
 Claro que $\int_{\Theta}\pi(\theta)d\theta = \infty$, pero nada impide (formalmente) escribir
 \begin{align*}
 \pi(\theta|X) &= \frac{f(X|\theta)\pi(\theta)}{f(X)}\\
-&= \frac{ke^{-\frac{1}{2\sigma^2}\sum (X_{i}-\theta)^2}\cdot 1}{\int_{-\infty}^{\infty}}f(X|\theta) \underbrace{\pi(\theta)}_{1}d\theta
+&= \frac{ke^{-\frac{1}{2\sigma^2}\sum (X_{i}-\theta)^2}\cdot 1}{\int_{-\infty}^{\infty}f(X|\theta) \underbrace{\pi(\theta)}_{1}d\theta}
 \end{align*}
 La parte de abajo de la fracción
 \begin{align*}
@@ -148,7 +148,7 @@ Habiendo observado $X=x$, entonces nuestra opinión es:
 El test bayesiano entonces es Diga $H_{0}$ si $\pi(\Theta_{0}|X) > \pi(\Theta_{1}|X)$, en caso contrario diga $H_{1}$
 \begin{ej}
 Calcular el test de Bayes cuando $\Theta = \{\theta_{0},\theta_{1}\}$, es decir, $H_{i}: \theta = \theta_{i}, i = 0,1$.\\
-Es este caso $\pi(\theta)$ está caracterizado por $\pi_{0},\pi_{1}(\pi(\theta_{1})$ tales que $\pi_{0}+\pi_{1}=1$ y $\pi(\theta|X) < f(X|\theta)\pi(\theta)$
+Es este caso $\pi(\theta)$ está caracterizado por $\pi_{i} = \pi(\theta_{i})$ tales que $\pi_{0}+\pi_{1}=1$ y $\pi(\theta|X) < f(X|\theta)\pi(\theta)$
 \end{ej}
 \item Con los intervalos de confianza ocurre algo similar (es muy sencillo), lo bayesianos hablan de intervalos de credibilidad.\\
 Dado $\alpha \in (0,1)$, buscamos $\theta_{1\alpha}<\theta_{2\alpha}$ tales que (param. real)
@@ -162,13 +162,13 @@ Dado $\alpha \in (0,1)$, buscamos $\theta_{1\alpha}<\theta_{2\alpha}$ tales que 
 
 Nosotros comenzamos el tema de estimación puntual considerando una función $g(\theta)$ (toda real) que queremos estimar a través de un estimador $\hat{g}(X)$ y usamos el criterio del e.c.m. Calculamos (notación  antigua)
 \begin{align*}
-ecm_{\theta}(\hat{g}) = \mathbb{E}_{\theta}(\hat{g}(X)-g(\theta))^2
+ecm_{\theta}(\hat{g}) = \mathbb{E}_{\theta}((\hat{g}(X)-g(\theta))^2)
 \end{align*}
-problema de optimizar el ecm con respecto a $\hat{g}$ (uniforme en $\theta$ (problema variacional).\\
+problema de optimizar el ecm con respecto a $\hat{g}$ (uniforme en $\theta$ (problema variacional)).\\
 
 Supongamos que se dispone de $\pi(\theta)$, la densidad a priori. En lugar de buscar óptimos unifrmes en $\theta$, integramos con respecto a $\pi(\theta)$. Es decir, calculamos
 \begin{align*}
-\underbrace{R(\hat{g})}_{riesgo\ de\ \hat{g}} = \int_{\Theta}ecm_{\theta}(\hat{g}\pi(\theta)d\theta
+\underbrace{R(\hat{g})}_{riesgo\ de\ \hat{g}} = \int_{\Theta}ecm_{\theta}(\hat{g})\pi(\theta)d\theta
 \end{align*}
 Buscamos $\hat{g}$ que minimice el riesgo. esto sigue siendo variacional.\\
 
@@ -186,6 +186,6 @@ usando fubini
 \begin{align*}
 = \int_{\mathfrak{x}}\int_{\Theta}(\hat{g}(X)-g(\theta))^2\pi(\theta|X)d\theta f(X)dx
 \end{align*}
-Se observa que $\gamma^*(X) = \mathbb{E}(g(\theta)|X)$ es estimador que minimiza el riesgo $R(\hat{y})$!!
+Se observa que $\gamma^*(X) = \mathbb{E}(g(\theta)|X)$ es estimador que minimiza el riesgo $R(\hat{g})$!!
 \end{etaremune}
 \end{document}

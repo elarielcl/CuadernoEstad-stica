@@ -114,16 +114,16 @@ Be(a,b) &= \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
 
 Calculemos la densidad a posteriori de $\theta$, es decir, $\pi(\theta|X)$ (sería $f(\theta|X)$ pero usamos $\pi$ por tradición)
 \begin{align*}
-\pi(\theta|X) = \frac{f(X|\theta)\pi(\theta)}{f(X)} \alpha f(X|\theta)\pi(\theta)\\
-\pi(\theta|X) \alpha \theta^{\sum X_{i}}(1-\theta)^{n-\sum X_{i}} \theta^{a-1}(1\theta)^{b-1}
+\pi(\theta|X) = \frac{f(X|\theta)\pi(\theta)}{f(X)}\ \alpha\ f(X|\theta)\pi(\theta)\\
+\pi(\theta|X)\ \alpha\ \theta^{\sum X_{i}}(1-\theta)^{n-\sum X_{i}} \theta^{a-1}(1\theta)^{b-1}/Be(a,b)
 \end{align*}
 Recordemos que se trata de la densidad Beta de parámetros $\sum X_{i}+a$ y $n-\sum X_{i} +b$
 \begin{align*}
-\pi(\theta|X) = \frac{\theta^{\sum X_{i}+a-1}(1-\theta)^{n-\sum X_{i} +b -1}}{Be(\sum X_{i}+a,n-\sum X_{i}+b}
+\pi(\theta|X) = \frac{\theta^{\sum X_{i}+a-1}(1-\theta)^{n-\sum X_{i} +b -1}}{Be\left(\sum X_{i}+a,n-\sum X_{i}+b\right)}
 \end{align*}
 En el caso de $\pi(\theta)$ uniforme (a=b=1), tenemos
 \begin{align*}
-\pi(\theta|X) = Beta(\sum X_{1} + 1, n-\sum X_{i}+1)
+\pi(\theta|X) \sim Beta\left(\sum X_{1} + 1, n-\sum X_{i}+1\right)
 \end{align*}
 \underline{Cálculo de la esperanza a posteriori:}
 \begin{align*}
@@ -138,7 +138,7 @@ Aquí
 &= \frac{(\sum X_{i}+a)\Gamma(\sum X_{i} + a)\Gamma(n-\sum X_{i} +b)}{(n+a+b)\Gamma(n+a+b)\Gamma(\sum X_{i}+a)\Gamma(n-\sum X_{i} + b)}\\
 &= \frac{n\bar{X}+a}{n+a+b}
 \end{align*}
-Caso a=b=1, $\hat{\theta}_{B} := \mathbb{E}(\theta|X) = \frac{n\bar{X}+1}{n+2} \not = \bar{X}$, es decir, el estimador de Bayes es diferenctes al EIVUM de la tería clásica.\\
+Caso a=b=1, $\hat{\theta}_{B} := \mathbb{E}(\theta|X) = \frac{n\bar{X}+1}{n+2} \not = \bar{X}$, es decir, el estimador de Bayes es diferente al EIVUM de la teoría clásica.\\
 
 $\hat{\theta}_{B}$ es un resumen de $\pi(\theta|X)$ pero hay otras formas de proceder, si nos obligan a producir un estimador de $\theta$. Por ejemplo, la mediana a posteriori se calcula como:\\
 $M$ tal que $\int_{0}^{M}\pi(\theta|X)d\theta = 1/2$.\\
@@ -160,12 +160,12 @@ Aquí en nuestro ejemplo tenemos
 \textbf{¿Cómo se estima ``bayesianamente'' una función $g(\theta)$ de $\theta$?}\\
 Lo que parece lógico es obtener la densidad a posteriori de $g(\theta)$, mediante cambio de variable.\\
 Digamos que resulta $\pi_{g}(\tau|X), \tau = g(\theta)$ y calculamos $\hat{g}(\theta)_{B} = \mathbb{E}(g(\theta)|X)$.\\
-Notar que no se necesita calcular $\pi_{g}(\tau|X)$ para obtener $\mathbb{E}(g(\theta|X)$. Basta escribir
+Notar que no se necesita calcular $\pi_{g}(\tau|X)$ para obtener $\mathbb{E}(g(\theta|X))$. Basta escribir
 \begin{align*}
 \mathbb{E}(g(\theta)|X) = \int_{\Theta}g(\theta) \pi(\theta|X)d\theta
 \end{align*}
 \section{Conjugación}
-Hemos visto en el ejemplo anterior ue $\pi(\theta)$ en Beta y que $\pi(\theta|X)$ también, con otros parámetros.\\
+Hemos visto en el ejemplo anterior que $\pi(\theta)$ es Beta y que $\pi(\theta|X)$ también, con otros parámetros.\\
 
 En este caso se habla de conjugación.\\
 Dados $f(X|\theta)$ y $\pi(\theta)$ perteneciente a una familia, digamos $\mathcal{F}$, de densiddes sobre $\Theta$, diremos que hay conjugación, o que $\pi(\theta)$ es conjugada para $f(X|\theta)$, si $\pi(\theta|X) \in \mathcal{F}$.\\
@@ -174,7 +174,7 @@ Para que este concepto sea útil, hay que escoger $\mathcal{F}$ de forma que dep
 
 Porque en tal caso, el cálculo de $\pi(\theta|X)$ se reduce a una actualización de parámetros.\\
 
-En nuestro ejemplo anterior $\mathcal{F} = \text{densidades Beta con parámetros a,b>0} = \{X^{a-1})(1-X)^{b-1}\colon a,b>0\}$, entonces $\pi(\theta) = Be(a,b) \in \mathcal{F}$ y $\pi(\theta|X) = Be(\sum X_{i} +a, n- \sum X_{i}+b) \in \mathcal{F}$.\\
+En nuestro ejemplo anterior $\mathcal{F} = \text{densidades Beta con parámetros $a,b>0$} = \{ X^{a-1}(1-X)^{b-1}\colon a,b>0\}$, entonces $\pi(\theta) = Be(a,b) \in \mathcal{F}$ y $\pi(\theta|X) = Be(\sum X_{i} +a, n- \sum X_{i}+b) \in \mathcal{F}$.\\
 
 Se produce una actualización de parámetros $a\sim \sum X_{i}+a, b \sim n-\sum X_{i}+b$.\\
 
@@ -192,8 +192,8 @@ Vamos a tomar $\pi(\theta)$ como densidad gamma de parámetros $\lambda, p$ (hip
 \end{align*}
 De lo anterior
 \begin{align*}
-\pi(\theta|X) &\alpha \frac{e^{-n\theta}\theta^{\sum X_{i}}}{\prod_{i=1}^n X_{i}!} \frac{\lambda (\lambda\theta)^{p-1}e^{-\lambda\theta}}{\Gamma(p)}\\
-&\alpha e^{-\theta(\lambda+n)}\theta^{\sum X_{i}+p-1}
+\pi(\theta|X) &\ \alpha\ \frac{e^{-n\theta}\theta^{\sum X_{i}}}{\prod_{i=1}^n X_{i}!} \frac{\lambda (\lambda\theta)^{p-1}e^{-\lambda\theta}}{\Gamma(p)}\\
+&\alpha\ e^{-\theta(\lambda+n)}\theta^{\sum X_{i}+p-1}
 \end{align*}
 Veremos que lo anterior es una densidad gamma de parámetro $\lambda+n,\sum X_{i} + p$.\\
 \begin{align*}
@@ -206,7 +206,7 @@ Terminamos con otro ejemplo clásico de conjugación.
 Sea $X_{1},\ldots,X_{n}$ MAS del modelo gaussiano $N(\theta,\sigma^2)$, donde $\sigma$ es conocido y $\theta$ parámetro real.\\
 Consideremos $\pi(\theta)$ gaussiana $N(\mu,\tau^2)$, $\mu,\tau$ son hiperparámetros. Se calcula como:
 \begin{align*}
-\pi(\theta|X) &\alpha \underbrace{e^{-\frac{1}{2\sigma^2}\sum (X_{i}-\theta)^{2}}}_{f(X|\theta)}\underbrace{e^{-\frac{1}{2\tau^2}(\theta-\mu)^2}}_{\frac{\mu \theta}{\tau^2}}\\
+\pi(\theta|X) &\ \alpha\ \underbrace{e^{-\frac{1}{2\sigma^2}\sum (X_{i}-\theta)^{2}}}_{f(X|\theta)}\underbrace{e^{-\frac{1}{2\tau^2}(\theta-\mu)^2}}_{\pi(\theta)\sim N(\mu,\tau^2)}\\
 &= e^{Q(\theta)} = N(\hat{\theta}(X),\hat{\sigma}^2(X))
 \end{align*}
 Hay que expandir las formas cuadráticas y agrupar convenientemente
