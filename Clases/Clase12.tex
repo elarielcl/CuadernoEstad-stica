@@ -100,11 +100,11 @@ Recuerdo del problema bilateral $X_{1},\ldots,X_{n} \sim N(\mu,\sigma^2), \sigma
 
 Los tests clasicos de NP para $H_{0}: \mu=\mu_{0}$ versus $H_{1}: \mu=\mu_{1}, \mu_{1}>\mu_{0}$ o $H_{0}: \mu=\mu_{0}$ versus $H_{1}: \mu_{1}<\mu_{0}$ no sirven para el problema bilateral, en realidad no son UMP (y por mucho).\\
 
-Test a la derecha (1) $\bar{X} \ge \mu_{0} + \frac{\sigma}{\sqrt{n}}\phi^{-1}(1-\alpha)$ y a la izquierda (2) $\bar{X} \ge \mu_{0} + \frac{\sigma}{\sqrt{n}}\phi^{-1}(\alpha)$.\\
+Test a la derecha (1) $\bar{X} \ge \mu_{0} + \frac{\sigma}{\sqrt{n}}\phi^{-1}(1-\alpha)$ y a la izquierda (2) $\bar{X} \le \mu_{0} + \frac{\sigma}{\sqrt{n}}\phi^{-1}(\alpha)$.\\
 
 Estrategia de la micro para el problema bilateral: Duplicar el test NP.\\
 
-Rechazamos $H_{0}:\mu=\mu_{0}$ en lugar de $H_{1}:\mu \not \mu_{0}$ si alguno de los TNP rechaza, i.e. tiene función $max\{\phi_{1}(X),\phi_{2}(X)\}$.\\
+Rechazamos $H_{0}:\mu=\mu_{0}$ en lugar de $H_{1}:\mu \not = \mu_{0}$ si alguno de los TNP rechaza, i.e. tiene función $max\{\phi_{1}(X),\phi_{2}(X)\}$.\\
 
 Veamos que
 \begin{align*}
@@ -128,7 +128,7 @@ Recordemos que el TRV para $H_{0}: \theta \in \Theta_{0}$ versus $H_{1}: \theta 
 \lambda(X) &= \frac{\sup_{\theta \in \Theta_{1}}f_{\theta}(X)}{\sup_{\theta \in \Theta_{0}}f_{\theta}(X)}\\
 &= \frac{f_{\hat{\theta_{1}}}}{f_{\hat{\theta_{0}}}}
 \end{align*}
-que son EMV de $\theta$ restringidos a $\Theta_{0} y \Theta_{1}$.\\
+que son EMV de $\theta$ restringidos a $\Theta_{0}\ y\ \Theta_{1}$.\\
 \textbf{Minitruco útil en ocasiones}\\
 
 Sea
@@ -163,7 +163,7 @@ Luego $\hat{\mu_{0}} = \bar{X}\mathbbm{1}_{\{\bar{X}>\mu_{0}\}}+ \mu_{0} \mathbb
 \Rightarrow &\lambda(X) = e^{-\frac{1}{2\sigma^2}\left(\sum (X_{i}-\hat{\mu_{0}})^2- \sum (X_{i}-\mu_{0})^2\right)}\ge k_{\alpha}\\
 \Leftrightarrow & \sum (X_{i}-\mu_{0})^2 - \sum (X_{i}-\hat{\mu_{0}})^2 \ge k_{\alpha}'\\
 \Leftrightarrow &-2n\mu_{0} + n\mu_{0}^2 +2n\bar{X}\hat{\mu_{0}} - n \hat{\mu_{0}}^2 \ge k_{\alpha}'\\
-\Leftrightarrow &2\bar{X}(\hat{\mu_{0}}-\mu_{0}) - (\hat{\mu_{0}})^2-\mu_{0}^2) \ge k_{\alpha}''
+\Leftrightarrow &2\bar{X}(\hat{\mu_{0}}-\mu_{0}) - (\hat{\mu_{0}}^2-\mu_{0}^2) \ge k_{\alpha}''
 \end{align*}
 Pero $\hat{\mu_{0}} - \mu_{0} = \bar{X}\mathbbm{1}_{\bar{X}>\mu_{0}} + \mu_{0}\mathbbm{1}_{\bar{X}\le \mu_{0}} - \mu_{0}\mathbbm{1}_{\bar{X}>\mu_{0}} - \mu_{0}\mathbbm{1}_{\bar{X}\le \mu_{0}} = (\bar{X}-\mu_{0})\mathbbm{1}_{\bar{X}\le \mu_{0}}$
 \begin{align*}
@@ -181,7 +181,7 @@ Esta última constante la calculamos $\mathbb{P}_{\mu_{0}}\left(\frac{\bar{X}-\m
 $H_{0}:\mu=\mu_{0}$ versus $H_{1}: \mu > \mu_{0}$, $\theta = (\mu,\sigma)$, $\Theta_{0}=\{\mu_{0}\}\times (0,\infty)$ y $\Theta_{1}=(\mu_{0},\infty)\times (0,\infty)$.
 \begin{align*}
 &\lambda(X) = \frac{\sup_{\sigma>0}\sup_{\mu>\mu_{0}}f_{\theta}(X)}{\sup_{\sigma>0}\sup_{\mu=\mu_{0}}f_{\theta}(X)}\\
-\sup_{\sigma>0}\sup_{\mu=\mu_{0}}f_{\theta}(X) &= \sup_{\sigma>0} \left(\frac{1}{\sqrt{2\pi}}\right)^n\sigma^{-n}e^{-1/2\sigma^2}\sum (X_{i}-\mu_{0})^2\\
+\sup_{\sigma>0}\sup_{\mu=\mu_{0}}f_{\theta}(X) &= \sup_{\sigma>0} \left(\frac{1}{\sqrt{2\pi}}\right)^n\sigma^{-n}e^{-1/2\sigma^2\sum (X_{i}-\mu_{0})^2}\\
 \Leftrightarrow &\max_{\sigma>0} -n\log \left(-\frac{1}{2\sigma^2}\sum (X_{i}-\mu_{0})^2\right)\\
 \Rightarrow & \hat{\sigma_{0}} = \frac{1}{n} \sum (X_{i}-\mu_{0})^2
 \end{align*}

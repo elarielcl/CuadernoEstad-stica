@@ -98,7 +98,7 @@
 \end{center}
 \section{Test de Neyman-Pearson}
 $X_{1}, X_{2}, \ldots, X_{n}$ iid $N(\mu,\sigma)$, $\sigma>0$ conocido.\\
-$H_{0}: \mu = \mu_{0}$ versus $H_{1}: \mu = \mu_{1}$ con $\mu_{1}>\mu_{0}$.\\
+$H_{0}: \mu = \mu_{0}$ versus $H_{1}: \mu = \mu_{1}$ con $\mu_{1}<\mu_{0}$.\\
 
 Encontramos que el TNP de nivel $\alpha$ tiene región crítica dada por :
 \begin{align*}
@@ -111,7 +111,6 @@ Bajo $H_{1}$ (cuando calculamos $\mathbb{P}_{\mu_{1}}$) $\bar{X} \sim N(\mu_{1},
 \end{align*}
 \textbf{¿Qué pasa con la potencia cuando... ?}
 \begin{itemize}
-\item $\rightarrow \infty$, $\alpha(\mu_{1}) \rightarrow 1$
 \item $\alpha \rightarrow 1$, $\alpha(\mu_{1}) \rightarrow 1$
 \item $\alpha \rightarrow 0$, $\alpha(\mu_{1}) \rightarrow 0$
 \item $\mu_{1} \rightarrow \pm\infty, \alpha(\mu_{1}) \rightarrow 1$
@@ -125,7 +124,7 @@ Tenemos $H_{0}: \theta = \theta_{0}$ y $H_{1}: \theta = \theta_{1}$, con $\theta
 \mathbb{P}_{\theta_{0}}(x \in \mathbb{R}^*) = \alpha, \alpha \in (0,1)\\
 f_{0}(x) = \theta^{\sum x_{i}}(1-\theta)^{n-\sum x_{i}} \Rightarrow & \frac{f_{1}(x)}{f_{0}(x)} = \left(\frac{\theta_{1}/(1-\theta_{1})}{\theta_{0}/(1-\theta_{0})}\right)\left(\frac{1-\theta_{0}}{1-\theta_{1}}\right)^n \ge k_{\alpha}\\
 \Leftrightarrow & \left(\frac{\theta_{1}/(1-\theta_{1})}{\theta_{0}/(1-\theta_{0})}\right)^{\sum X_{i}} \ge k_{\alpha}'\\
-\sum X_{i} \alpha k_{\alpha}''
+\sum X_{i} \ge k_{\alpha}''
 \end{align*}
 Sabemos que $\sum X_{i}$ es binomial $\sim B(n,\theta)$, entonces hay que buscar $k_{\alpha}$ tal que 
 \begin{align*}
@@ -160,7 +159,7 @@ Este test óptimo tiene el siguiente aspecto:
       0 & si\ f_{1}(X)<kf_{0}(X)
 \end{cases}
 \end{align*}
-, donde $k$ y $c$ se determinan para que $\alpha_{\Phi_{a}^*(\theta_{0}} = \alpha$\\
+, donde $k$ y $c$ se determinan para que $\alpha_{\Phi_{a}^*}(\theta_{0}) = \alpha$\\
 
 La idea para ver $k$ y $c$ es la siguiente.\\
 Definimos
@@ -188,7 +187,7 @@ Hay que probar que con esta elección de $k$ y $c$ $(\tilde{k_{\alpha}}',c)$ se 
 \end{ej}
 Ahora nos enfrentamos a hipótesis compuestas y veremos si el TNP sirve o no sirve.\\
 Veamos un caso en que parece que el TNP sea útil:\\
-$X_{1},X_{2},\ldots, X_{n}$ iid $\sim N(\mu \sigma^2), \sigma>0$ conocido. Sea $\mu_{0} \in \mathbb{R}$.\\
+$X_{1},X_{2},\ldots, X_{n}$ iid $\sim N(\mu ,\sigma^2), \sigma>0$ conocido. Sea $\mu_{0} \in \mathbb{R}$.\\
 
 Consideremos $H_{0}: \mu \le \mu_{0}$ vs $H_{1}: \mu > \mu_{0}, \mu \in \mathbb{R}$ o $H_{0}: \mu = \mu_{0}$ vs $H_{1}: \mu > \mu_{0}, \mu \in (\mu_{0}, \infty)$ rechazando cuando $\bar{X}$ es grande.\\
 

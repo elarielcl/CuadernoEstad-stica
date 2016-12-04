@@ -136,7 +136,7 @@ que corresponde al numerador de $\lambda$.\\
 Estudiemos ahora $\sup_{\mu,\sigma}f_{\mu,\mu,\sigma}(X,Y)$.
 \begin{align*}
 \log f_{\mu,\mu,\sigma} &= k- (m+n)\log \sigma - \frac{1}{2\sigma^2}\left(\sum (X_{i}-\mu)^2+\sum (Y_{i}-\mu)^2\right)\\
-\frac{\partial \log}{\partial \mu} &= c\left(\sum (X_{i}-\mu + \sum (Y_{i}-\nu))\right) = 0\\
+\frac{\partial \log}{\partial \mu} &= c\left(\sum (X_{i}-\mu) + \sum (Y_{i}-\nu)\right) = 0\\
 \Rightarrow &\tilde{\mu} = \frac{1}{m+n}\left(\sum X_{i}+ \sum Y_{i}\right) = \frac{m\bar{X}+n\bar{Y}}{m+n} \text{ promedio ponderado de las medias}\\
 \frac{\partial \log f_{\tilde{\mu},\tilde{\mu},\sigma}}{\partial \sigma} &= -\frac{m+n}{\sigma} + \frac{1}{\sigma^2}\left(\sum (X_{i}-\hat{\mu})^2+\sum (Y_{i}-\hat{\mu})^2\right)  = 0\\
 \Rightarrow & \hat{\sigma}^2 = \frac{1}{m+n}\left(\sum (X_{i}-\hat{\mu})^2+\sum (Y_{i}-\hat{\mu})^2\right)\\
@@ -184,7 +184,7 @@ Para terminar entonces buscamos $\sup_{\theta\in\Theta_{0}}\mathbb{P}_{\theta}(|
 \includegraphics[scale=0.1]{imagenes/student.jpg}
 \end{center}
 \section{Complementos de test de hipótesis}
-Hay un tema interesante que mencionamos, se trata de la propiedad de la razón de verosimilitud monótona. Gracias a esta propiedad se puede escribir de inmediato un test UMP pata un problema unilateral (sin aplicar TRV).\\
+Hay un tema interesante que mencionamos, se trata de la propiedad de la razón de verosimilitud monótona. Gracias a esta propiedad se puede escribir de inmediato un test UMP par un problema unilateral (sin aplicar TRV).\\
 
 Una familia de densidades $f_{\theta}(X)$ y parámetro real $\theta$ tal que $\theta \not = \theta' \Rightarrow f_{\theta}(X) \not = f_{\theta'}(X)$ (idenficabilidad), se dice que posee razón de verosimilitud monótoma si $\forall \theta < \theta'$ el cociente $\frac{f_{\theta'}(X)}{f_{\theta}(X)}$ es función creciente de un estadístico $T(X)$
 
