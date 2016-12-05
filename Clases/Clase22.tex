@@ -116,7 +116,7 @@ $\hat{\epsilon} = Y - \hat{Y} = $ la parte no ``explicada'' por las variables $X
 
 Recordemos que $Y$ tiene $\mathbb{E}(Y) = X\beta \in <X>$.\\
 
-Notemos que $\mathbb{E}(\hat{\epsilon}) = 0$. Ahora calculemos la esperanza de $||\hat{\epsilon}||^2 = (Y.X\hat{\beta})'(Y-X\hat{\beta})$. Notemos que
+Notemos que $\mathbb{E}(\hat{\epsilon}) = 0$. Ahora calculemos la esperanza de $||\hat{\epsilon}||^2 = (Y-X\hat{\beta})'(Y-X\hat{\beta})$. Notemos que
 \begin{align*}
 \hat{\epsilon} &= Y -X \hat{\beta}\\
 &= \underbrace{(I-X(X'X)^{-1}X')}_{proyector\ en\ <X>^{\perp}}Y\\
@@ -179,7 +179,7 @@ k = 1 &\quad \hat{\sigma}^2 = \frac{1}{n-1} ||\hat{\epsilon}||^2\\
 \end{align*}
 
 \section{Calidad del Modelo}
-La idea es cuantificar en uno o varios indices (reales) que tan bueno es el modelo.\\
+La idea es cuantificar en uno o varios índices (reales) que tan bueno es el modelo.\\
 
 Es decir, que tan bien se ajusta a los datos o que tan bien explica la variabilidad de los datos.
 \begin{center}
@@ -189,7 +189,7 @@ Mientras más pequeño $||\epsilon||^2$, mejor el ajuste.\\
 
 Se define el coeficiente $r^2$ de correlación múltiple como $cos^2$ del ángulo entre $Y$ y $<X>$
 \begin{align*}
-cos^2 &= \frac{||\hat{Y}||^2}{||Y||^2}\\
+r^2=cos^2 &= \frac{||\hat{Y}||^2}{||Y||^2}\\
 &= 1-\frac{||\hat{\epsilon}||^2}{||Y||^2}\\
 &= \frac{<Y,\hat{Y}>^2}{||Y||^2||\hat{Y}||^2}
 \end{align*}
@@ -229,14 +229,14 @@ Veamos que pasa en el modelo lineal.\\
 Tenemos $\epsilon \sim NM(0, \sigma^2I)$, lo cual implica que los $\epsilon_{i}$ son iid $N(0,\sigma^2)$.\\
 Por otra parte, como $Y = X\beta + \epsilon$, entonces $Y \sim NM(X\beta, \sigma^{-2}I)$, $\hat{\beta} (X'X)^{-1}X'Y$.\\
 
-Por lo tanto, $\hat{\beta} \sim NM(\beta, \sigma^2(X'X)^{-1}$.\\
+Por lo tanto, $\hat{\beta} \sim NM(\beta, \sigma^2(X'X)^{-1})$.\\
 
 Con esto podemos definir por ejemplo, intervalos de confianza.Hay más!.\\
 Gracias a la normalidad se demuestra que $\hat{\beta}$ es EIVUM.\\
 
 Aquí tenemos que simplemente notar que cada $\hat{\beta}_{i}$ tiene ley normal, $\hat{\beta}_{i} \sim N(\beta_{i}, \sigma c_{ii}), C = (c_{ij}) = (X'X)^{-1}$.\\
 
-Podemos usar el método del pivote $\frac{\hat{\beta}_{i} - \beta_{i}}{\sigma\sqrt{c_{ii}}}$, para definir un intervalo de $\beta_{i}$, siempre que $\sigma^2$ sea conocidoSi $\sigma$ es deconocido se reemplaza por $\hat{\sigma}^2 = \frac{1}{n-k} ||\hat{\epsilon}||^2$ y ocurre que $\frac{||\hat{\epsilon}||^2}{\sigma^2}$ tiene ley $\chi^2 (n-k)$ y es independiente de $\hat{\beta} - \beta$.\\
+Podemos usar el método del pivote $\frac{\hat{\beta}_{i} - \beta_{i}}{\sigma\sqrt{c_{ii}}}$, para definir un intervalo de $\beta_{i}$, siempre que $\sigma^2$ sea conocido, si $\sigma$ es deconocido se reemplaza por $\hat{\sigma}^2 = \frac{1}{n-k} ||\hat{\epsilon}||^2$ y ocurre que $\frac{||\hat{\epsilon}||^2}{\sigma^2}$ tiene ley $\chi^2 (n-k)$ y es independiente de $\hat{\beta} - \beta$.\\
 
 Así se construye una $t$ de student con $n-k$ grados de libertad.
 \end{itemize}

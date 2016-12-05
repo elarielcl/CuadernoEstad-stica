@@ -114,9 +114,9 @@ Solución:
  &= \frac{\text{covarianza empírica}}{\text{varianza empírica}}
 \end{align*}
 \section{Hipótesis Probabilística}
-Suponemos que los $y_{i}$ son realizaciones de una variable aleatoria $Y_{i}, i = 1\ldots n$, e forma que $\mathbb{E}(Y_{i}) = \alpha + \beta x_{i}$.\\
+Suponemos que los $y_{i}$ son realizaciones de una variable aleatoria $Y_{i}, i = 1\ldots n$, de forma que $\mathbb{E}(Y_{i}) = \alpha + \beta x_{i}$.\\
 
-Entonces, se define la variable aleatoria $\epsilon_{i}$, llamada error y definida como
+Entonces, se define la variable aleatoria $\epsilon_{i}$, llamada error, como
 \begin{align*}
 \epsilon_{i} &= Y_{i} - \mathbb{E}(Y_{i})\\
 &= Y_{i} - \alpha - \beta x_{i}
@@ -134,11 +134,11 @@ Con esto somos capaces de mostrar que:
 \end{align*}
 que son insesgados para $\alpha$ y $\beta$ respectivamente.\\
 
-Para continuar buscando propiedades de $\hat{\alpha}$, $\hat{\beta}$ agregamos más hipótesis, que son razonable y luego de los cálculos se pueden confirmar en cierta medida.\\
+Para continuar buscando propiedades de $\hat{\alpha}$, $\hat{\beta}$ agregamos más hipótesis, que son razonables y luego de los cálculos se pueden confirmar en cierta medida.\\
 
 Supongamos que los $\epsilon_{i}$ tienen varianzas finitas $\mathbb{V}(\epsilon_{i}) = \sigma_{i}^2$ y además son no correlacioneados, es decir, $Cov(\epsilon_{i},\epsilon_{j}) = 0$.\\
 
-Con esto se puede avanzar bastante en los cálculos de $\mathbb{V}(\hat{\alpha})$ y $\mathbb{V}(\hat{\beta})$. Así como $Cov(\hat{\alpha,\beta})$, sin embargo los $\sigma_{i}$ surgen como nuevos parámetros del modelo, que se agregan a $\alpha$, y $\beta$, teniendo solo $n$ datos.\\
+Con esto se puede avanzar bastante en los cálculos de $\mathbb{V}(\hat{\alpha})$ y $\mathbb{V}(\hat{\beta})$. Así como $Cov(\hat{\alpha},\hat{\beta})$, sin embargo los $\sigma_{i}$ surgen como nuevos parámetros del modelo, que se agregan a $\alpha$, y $\beta$, teniendo solo $n$ datos.\\
 
 Se suele agregar a lo anterior la hipótesis $\sigma_{i} = \sigma_{j} = \sigma$ , llamada \underline{homocedasticidad}.\\
 
@@ -150,7 +150,7 @@ Resumiendo, pedimos :
 \end{itemize}
 Aún así, no sabemos nada (más) de la esperanza conjunta de $\epsilon_{i}$, que podrían ser dependientes.\\
 
-Ahora si el problema de estimar $\alpha,beta,\sigma^2$ con $n$ datos es razonable.\\
+Ahora si el problema de estimar $\alpha,\beta,\sigma^2$ con $n$ datos es razonable.\\
 
 \section{¿Cómo seguimos?}
 \begin{center}
@@ -165,12 +165,12 @@ Y_{i} &= \alpha + \beta x_{i} + \gamma x_{i}^2 + \epsilon_{i}
 
 Planteamos 
 \begin{align*}
-\min_{\alpha,\beta,\gamma} \sum (y_{i}-\alpha-\gamma x_{i}^2)^2
+\min_{\alpha,\beta,\gamma} \sum (y_{i}-\alpha -\beta x_{i} -\gamma x_{i}^2)^2
 \end{align*}
 
 Resolvemos buscando puntos estacionarios
 \begin{align*}
-\frac{\partial}{\partial \alpha} = 0 \Leftrightarrow & \sum (y_{i}-\alpha-\gamma x_{i}^2)^2 = 0\\
+\frac{\partial}{\partial \alpha} = 0 \Leftrightarrow & \sum (y_{i}-\alpha-\beta x_{i} -\gamma x_{i}^2)^2 = 0\\
 \Leftrightarrow & \bar{y} - \alpha - \beta \bar{x^2} - \gamma = 0\\
 \frac{\partial}{\partial \beta} = 0 \Leftrightarrow & \frac{1}{n}\sum x_{i}y_{i} - \alpha \bar{x} - \beta \frac{1}{n} \sum x_{i}^2 - \gamma \frac{1}{n} \sum x_{i}^3 = 0\\
 \frac{\partial}{\partial \gamma} = 0 \Leftrightarrow &  \sum x_{i}^2y_{i} - \alpha\sum x_{i}^2 - \beta \sum x_{i}^3 - \gamma \sum x_{i}^4 = 0
@@ -207,7 +207,7 @@ Resolvemos buscando puntos estacionarios
  
  Hay efectivamente situaciones de no linealidad (ya veremos)\\
  
- ¿Qué ocurre si tenemos más de una variable explicativa x? Por ejemplo, $y$ depede del fertilizante $x$  y la humedad $u$. Digamos entonces:
+ ¿Qué ocurre si tenemos más de una variable explicativa x? Por ejemplo, $y$ depende del fertilizante $x$  y la humedad $u$. Digamos entonces:
  \begin{align*}
  Y_{i} = \alpha + \beta x_{i} + \gamma u_{i} + \epsilon
  \end{align*}
@@ -233,7 +233,7 @@ Resolvemos buscando puntos estacionarios
  \begin{align*}
  \min_{\beta_{1},\beta_{2},\ldots, \beta_{n}} \sum_{i=1}^n (y_{i}- \sum_{j=1}^k \beta_{j}x_{ij})^2
  \end{align*}
- La nube $(x_{i1},x_{i2},\ldots,x_{ik}, y_{i}) i=1\ldots n$ está en $mathbb{R}^{k+1}$.\\
+ La nube $(x_{i1},x_{i2},\ldots,x_{ik}, y_{i})_{i=1\ldots n}$ está en $\mathbb{R}^{k+1}$.\\
  La idea es ajustar hiperplano a la nube.
  \section{Notación Matricial}
  Se definen las siguientes matrices (y vectores):
@@ -251,7 +251,7 @@ Resolvemos buscando puntos estacionarios
            \epsilon_{1} \\
            \epsilon_{2} \\
            \vdots \\
-           \epsilon_{m}
+           \epsilon_{n}
          \end{bmatrix}
   \end{align*}
   Vector $n\times 1$ aleatorio (errores)
@@ -260,7 +260,7 @@ Resolvemos buscando puntos estacionarios
            \beta_{1} \\
            \beta_{2} \\
            \vdots \\
-           \beta_{m}
+           \beta_{k}
          \end{bmatrix}
   \end{align*}
   Vector $k\times 1$ de los parámetros del modelo (fuera de $\sigma$).\\
@@ -279,8 +279,8 @@ Resolvemos buscando puntos estacionarios
   \end{align*}
   Propiedades, si $A$ y $B$ son matrices no aleatorias, entonces:
   \begin{align*}
-  \mathbb{E}(AZ) &= A \mathbb{Z}\\
-  \mathbb{E}(ZB) &= \mathbb{Z} B
+  \mathbb{E}(AZ) &= A \mathbb{E}(Z)\\
+  \mathbb{E}(ZB) &= \mathbb{E}(Z) B
   \end{align*}
   Notación en $\mathbb{R}^n$, si
  \begin{align*}

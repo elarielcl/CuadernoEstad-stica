@@ -107,7 +107,7 @@ Gracias a esta hipótesis $\hat{\beta}$ resulta EIVUM y $\hat{\beta} \sim NM(\be
 \end{align*}
 En particular, si $a = e_{j} = \begin{bmatrix}
 0_{1}\\ \ldots \\
-1_{j} \\ \ldots \\ 0_{n}\end{bmatrix}$, obenemos intervalos para cada $\beta_{j}$ en $\beta$.\\
+1_{j} \\ \ldots \\ 0_{n}\end{bmatrix}$, obtenemos intervalos para cada $\beta_{j}$ en $\beta$.\\
 Si $\sigma$ es desconocido entonces se aprovecha lo siguiente:
 \begin{align*}
 \frac{\hat{\sigma}^2}{\sigma^2} = \frac{||\hat{\epsilon}||^2}{\sigma^2} \sim \chi^2 (n-k)
@@ -168,7 +168,7 @@ $\tilde{\beta}$ existe porque, de hecho $X\hat{\beta}$ es la proyección ortogon
 
 Definamos $<X>_{0} = \{X\beta \colon \beta \in \mathbb{R}^k, H\beta = 0\}$. Por cierto $<X>_{0}\subseteq <X>$ y además es subespacio vectorial.\\
 
-Nuestro problema de minimización equivale a proyctar $Y$ en $<X>_{0}$ ortogonal y eso existe, claro.\\
+Nuestro problema de minimización equivale a proyectar $Y$ en $<X>_{0}$ ortogonal y eso existe, claro.\\
 
 Así $f_{\tilde{\theta}} (y) = k \tilde{\sigma}^{-n} \Rightarrow \lambda(y) = \left(\frac{\tilde{\sigma}^2}{\hat{\sigma}^2}\right)^{n/2}$. Rechazamos $H_{0}$ si $\frac{\tilde{\sigma}}{\hat{\sigma}}$ es muy grande.
 \begin{center}
@@ -185,7 +185,7 @@ Cada forma cuadrática en este cuociente es $\chi^2$ pero son dependientes.\\
 
 Vamos a cambiar el cociente usando otras formas cuadráticas de vectores ortogonales y con ello accederemos a una ley sencilla para $\lambda (y)$.\\
 
-Por Pitágoras $||\tilde{\epsilon}||^2 = ||\hat{\epsilon}||^2 + ||\underbrace{\hat{Y}-\tilde{Y}}_{\hat{\epsilon}-\tilde{\epsilon}}||^2$, entonces $\lambda (y) = 1+ \frac{||\hat{\epsilon}-\tilde{\epsilon}||^2||}{||\hat{\epsilon}||^2}$\\
+Por Pitágoras $||\tilde{\epsilon}||^2 = ||\hat{\epsilon}||^2 + ||\underbrace{\hat{Y}-\tilde{Y}}_{\hat{\epsilon}-\tilde{\epsilon}}||^2$, entonces $\lambda (y) = 1+ \frac{||\hat{\epsilon}-\tilde{\epsilon}||^2}{||\hat{\epsilon}||^2}$\\
 
 Ahora si, las formas cuadráticas $||\tilde{\epsilon}-\hat{\epsilon}||^2$ y $||\hat{\epsilon}||^2$ son variables aleatorias independientes $\chi^2$, con sus grados de libertad.\\
 

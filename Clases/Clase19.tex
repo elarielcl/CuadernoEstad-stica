@@ -114,7 +114,7 @@ Postulamos la existencia de una función desconocida que vincula a $x$ e $y$, di
 
 Necesitamos una estrategia para obtener tal función o una que se acerque razonablemente.\\
 
-\textbf{Problema:} Posiblemente no hay ninguna función si es que $x_{i}=x_{j}$ con $f(x_{i})\not = f(x_{j})$ (admito que xisten este tipo de errores), o también puede que haya infinitas de estas funciones.\\
+\textbf{Problema:} Posiblemente no hay ninguna función si es que $x_{i}=x_{j}$ con $f(x_{i})\not = f(x_{j})$ (admito que existen este tipo de errores), o también puede que haya infinitas de estas funciones.\\
 
 Es necesario, antes de plantear una ``estrategia de ajuste'', reducir la clase de funciones $f$ candidatas para el modelo. Por ejemplo, restringir a funciones engendradas por una base finita, como los polinomios de grado $\le k$.\\
 
@@ -152,11 +152,11 @@ Si $\sigma_{x}^2 = 0$, no hay solución sii $x_{i} = \bar{x}, \forall i = 1\ldot
 
 Hemos resuelto el sistema lineal que resulta de buscar puntos estacionarios de $S(\alpha, \beta)$. Se muestra que existe única solución cuando $\sigma_{x}>0$.\\
 
-Aquí no tenemos ningún comentario estadístico que hacer porque no hay hipótesos probabilistica.\\
+Aquí no tenemos ningún comentario estadístico que hacer porque no hay hipótesis probabilistica.\\
 
 Hemos hecho un ``simple'' ajuste de mínimos cuadrados, la recta $y = \hat{\alpha} + \hat{\beta}x$ se llama recta de mínimos cuadrados es la recta más cercana a la nube en términos de distancias verticales.
 
-\section{Hipótesos probabilísticas}
+\section{Hipótesis probabilísticas}
 \begin{enumerate}
 \item Suponemos que $x_{i}, i = 1\ldots n$ no son aleatorios.
 \item Suponemos que $y_{i}, i = 1\ldots n$ provienen de variables aleatorias, es decir, cada $y_{i}$ es la realización de una variable aleatoria $Y_{i}$.
@@ -164,7 +164,7 @@ Hemos hecho un ``simple'' ajuste de mínimos cuadrados, la recta $y = \hat{\alph
 \end{enumerate}
 Se define la variable aleatoria de error $\epsilon_{i}$ como
 \begin{align*}
-\epsilon_{i} = Y_{i} - \mathbb{E}(Y_{i}) - Y_{i} - f(x_{i}),i = 1\ldots n
+\epsilon_{i} = Y_{i} - \mathbb{E}(Y_{i}) = Y_{i} - f(x_{i}),i = 1\ldots n
 \end{align*}
 tenemos $Y_{i} = f(x_{i}) + \epsilon_{i}, i = 1\ldots n$ con $\mathbb{E}(\epsilon_{i}) = 0, i = 1\ldots n$. Aparte de esto no se sabe nada de las $\epsilon_{i}$.\\
 
@@ -182,23 +182,23 @@ Buscamos $\alpha, \beta$ tales que se minimice
 \end{align*}
 Sabemos que 
 \begin{align*}
-\hat{\beta} = \frac{\frac{1}{n}\sum X_{i}X_{i}- \bar{X}\bar{X}}{\frac{1}{n}\sum X_{i}^2 - \bar{X}^2} = \frac{\sigma_{XY}}{\sigma_{X}^2}
+\hat{\beta} = \frac{\frac{1}{n}\sum X_{i}Y_{i}- \bar{X}\bar{Y}}{\frac{1}{n}\sum X_{i}^2 - \bar{X}^2} = \frac{\sigma_{XY}}{\sigma_{X}^2}
 \end{align*}
 Notar que $\hat{\beta}$ es una variable aleatoria función de $Y_{1},\ldots,Y_{n}$. Lo mismo pasa con $\hat{\alpha} = \bar{Y}-\hat{\beta}\bar{X}$.\\
 
 ¿Qué tan bueno son $\hat{\alpha}, \hat{\beta}$ como estimadores de $\alpha,\beta$ respectivamente?\\
 
-Calculamos sis respectivas esperanzas
+Calculamos sus respectivas esperanzas
 \begin{align*}
 \mathbb{E}(\hat{\alpha}) &= \mathbb{E}(\bar{Y}-\hat{\beta}\bar{X})\\
-&= \mathbb{Y}- \bar{X}\mathbb{E}(\hat{\beta})
+&= \mathbb{E}(Y)- \bar{X}\mathbb{E}(\hat{\beta})
 \end{align*}
 Sabemos que
 \begin{align*}
 Y_{i} &= \alpha + \beta X_{i} + \epsilon_{i}\\
-\bar{Y} &= \alpha + \beta \bar{X} + \mathbb{E}(\bar{\epsilon})\\
+\bar{Y} &= \alpha + \beta \bar{X} + \bar{\epsilon}\\
 \mathbb{E}(\bar{Y}) &= \alpha + \beta \bar{X} + \mathbb{E}(\bar{\epsilon})\\
-\Rightarrow \mathbb{E}(\hat{\alpha}) &= \alpha \beta \bar{X} - \bar{X}\mathbb{E}(\hat{\beta})\\
+\Rightarrow \mathbb{E}(\hat{\alpha}) &= \alpha + \beta \bar{X} - \bar{X}\mathbb{E}(\hat{\beta})\\
 &= \alpha + \bar{X}(\beta - \mathbb{E}(\hat{\beta}))
 \end{align*}
 Si $\hat{\beta}$ es insesgado para $\beta$, entonces lo mismo pasa para $\hat{\alpha}$.\\
@@ -206,18 +206,18 @@ Si $\hat{\beta}$ es insesgado para $\beta$, entonces lo mismo pasa para $\hat{\a
 Veamos entonces
 \begin{align*}
 \mathbb{E}(\hat{\beta}) &= \frac{\frac{1}{n}\sum X_{i}\mathbb{E}(Y_{i})- \bar{X}\mathbb{E}(\bar{Y})}{\sigma_{X}^2}\\
-\mathbb{E}(Y_{i}) = \alpha + \beta X_{i}\\
-\mathbb{E}(\bar{Y}) = \alpha + \beta \bar{X}\\
-\Rightarrow \frac{1}{n}\sum X_{i}(\alpha + \beta X)  - \bar{X}(\alpha + \beta\bar{X}) = \beta \left(\frac{1}{n}\sum X_{i}^2 - \bar{X}^2\right) = \beta \sigma_{X}^2\\
-\Rightarrow \mathbb{E}(\hat{\beta}) = \beta
+\mathbb{E}(Y_{i}) &= \alpha + \beta X_{i}\\
+\mathbb{E}(\bar{Y}) &= \alpha + \beta \bar{X}\\
+\Rightarrow \frac{1}{n}\sum X_{i}(\alpha + \beta \bar{X})  - \bar{X}(\alpha + \beta\bar{X}) &= \beta \left(\frac{1}{n}\sum X_{i}^2 - \bar{X}^2\right) = \beta \sigma_{X}^2\\
+\Rightarrow \mathbb{E}(\hat{\beta}) &= \beta
 \end{align*}
-Necesitamos urgentemente conocer las varianzas de $\hat{\alpha}$ y $\hat{\beta}$ incluso sis covarianzas.\\
+Necesitamos urgentemente conocer las varianzas de $\hat{\alpha}$ y $\hat{\beta}$ incluso sus covarianzas.\\
 
 Por ejemplo, supongamos que los $\epsilon_{i}$ tienen varianzas finitas $\sigma_{i}^2$. Puede ser que los $\epsilon_{i},\epsilon_{j}$ estén o no correlacionados, en este caso podemos calcular las varianzas de $\hat{\alpha},\hat{\beta}$ pero las expresiones son horribles.\\
 
 Supongamos que $Cov(\epsilon_{i},\epsilon_{j}) = \sigma_{ij}$. Entonces dado que $\hat{\beta} = \sum_{i=1}^n c_{i} Y_{i}$, se tiene que
 \begin{align*}
-\mathbb{V}(\hat{\beta}) &= Cov(\sum_{i=1}^n c_{i} Y_{i},\sum_{i=1}^n c_{i} Y_{i})\\
+\mathbb{V}(\hat{\beta}) &= Cov\left(\sum_{i=1}^n c_{i} Y_{i},\sum_{i=1}^n c_{i} Y_{i}\right)\\
 &= \sum_{i,j} c_{i}c_{j} \underbrace{Cov (Y_{i},Y_{j})}_{Cov (\epsilon_{i},\epsilon_{j})}\\
 &= \sum_{i,j} c_{i}c_{j}\sigma_{ij}
 \end{align*}

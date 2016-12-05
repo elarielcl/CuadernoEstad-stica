@@ -110,7 +110,7 @@ Y = X\beta + \epsilon
 \end{align*}
 Hipótesis básica: $\mathbb{E}(\epsilon) = 0 \in \mathbb{R}^n$.\\
 
-$\beta$ e calcula, $0$ se estima con el método de mínimos cuadrados.\\
+$\beta$ se calcula, o se estima con el método de mínimos cuadrados.\\
 
 Se resuelve
 \begin{align*}
@@ -156,7 +156,7 @@ Para el cálculo de $\hat{\beta}$ mostramos que
 \Leftrightarrow & (X\beta)'(Y-\hat{Y}) = 0, \forall \beta \in \mathbb{R}^k\\
 \Leftrightarrow & X'(Y-\hat{Y}) = 0\\
 \Leftrightarrow & X'(Y-X\hat{\beta}) = 0\\
-\Rightarrow & (X'X)^{-1}X'Y
+\Rightarrow & (X'X)^{-1}X'Y = \hat{\beta}
 \end{align*}
 Que es un sistema lineal de ecuaciones ``normales'', aquí obviamente se usa la hipótesis de rango completo.\\
 
@@ -184,7 +184,7 @@ Se define la matriz de varianzas-covarianzas de $Z$ como:
 \mathbb{V}(Z) = (Cov(Z_{i},Z_{j}))_{i,j = 1\ldots n}
 \end{align*}
 Entonces $\mathbb{V}$ es una matriz simétrica de $n\times n $ (con elementos finitos, por la finitud de segundos momentos).\\
-En la diagonal se encuentran las varianzas $\mathbb{V}(Z_{1}), \ldots \mathbb{V}(Z_{n})$.\\
+En la diagonal se encuentran las varianzas $\mathbb{V}(Z_{1}), \ldots ,\mathbb{V}(Z_{n})$.\\
 
 Recordemos que 
 \begin{align*}
@@ -194,11 +194,11 @@ Cov(Z_{i}, Z_{j}) &= \mathbb{E}(Z_{i}-\mathbb{E} (Z_{i})) (Z_{j}-\mathbb{E} (Z_{
 
 Con lo anterior podemos escribir
 \begin{align*}
-\mathbb{V} &= \mathbb{E}((Z-\mathbb{E}(Z))(Z-\mathbb{E}(Z))')
+\mathbb{V}(Z) &= \mathbb{E}((Z-\mathbb{E}(Z))(Z-\mathbb{E}(Z))')
 \end{align*}
 Por otra parte, si multiplicamos $Z$ por una matriz, digamos $AZ$, entonces
 \begin{align*}
-\mathbb{V}(AZ) &= \mathbb{E}((Z-\mathbb{E}(Z))(Z-\mathbb{E}(Z))'A')\\
+\mathbb{V}(AZ) &= \mathbb{E}(A(Z-\mathbb{E}(Z))(Z-\mathbb{E}(Z))'A')\\
 &= A \mathbb{V}(Z)A'
 \end{align*}
 
@@ -208,7 +208,7 @@ Es fácil ver que $\mathbb{V}(Z)$ es semidefinida positiva. En efecto:
 \end{align*}
 
 Volvamos a $\hat{\beta}$. Supongamos ahora que $\epsilon$ tiene segundos momentos finitos, i.e., $\mathbb{E}(\epsilon_{i}^2) < \infty, \forall i = 1\ldots n$. Con esto, sabemos que $\mathbb{\epsilon}$ está definida.\\
-Notamos que $\mathbb{V}(\epsilon) = \mathbb{V}(\epsilon\epsilon')$, porque $\mathbb{E}(\epsilon) = 0$.\\
+Notamos que $\mathbb{V}(\epsilon) = \mathbb{E}(\epsilon\epsilon')$, porque $\mathbb{E}(\epsilon) = 0$.\\
 Digamos que $\Sigma = \mathbb{E}(\epsilon\epsilon')$.\\
 Recordemos que $\hat{\beta} = (X'X)^{-1}X'Y$.\\
 \begin{align*}
@@ -263,7 +263,7 @@ $\hat{\phi}$ es evidentemente lineal en $Y$. Además,
 \begin{align*}
 \mathbb{E}(\hat{\phi}) = a' \mathbb{E} (\hat{\beta}) = a' \beta = \phi
 \end{align*}
-Veamosue $\hat{\phi}$ es lineal en $Y$ e insesgado para $\phi$.\\
+Luego $\hat{\phi}$ es lineal en $Y$ e insesgado para $\phi$.\\
 
 Sea $\tilde{\phi}$ otro estimador lineal en $Y$, insesgado para $\phi$.\\
 Existe entonces $b\in\mathbb{R}^n$ tal que $\tilde{\phi} = b'Y$. Por la condición de insesgamiento
@@ -274,7 +274,7 @@ Existe entonces $b\in\mathbb{R}^n$ tal que $\tilde{\phi} = b'Y$. Por la condici�
 \end{align*}
 Veamos que lo anterior significa que $a$ es combinación lineal de filas de $X$.\\
 
-Debido a que $rg(X) = k$ (suponiendo $n>k$) entonces $\exists b$ tq $a=X'b$.\\
+Debido a que $rg(X) = k$ (suponiendo $n>k$) entonces $\exists ! b$ tq $a=X'b$.\\
 
 Pero si $rg(X) < k$, entonces no hay garantía.\\
 
@@ -290,8 +290,8 @@ Calculemos $\mathbb{V}(\hat{\phi})$ y $\mathbb{V}(\tilde{\phi})$ y comparemos.
 
 Debido a que $a = X'b$ tenemos que 
 \begin{align*}
-\mathbb{V}(\hat{\phi}) &= \sigma^2 b'\underbrace{X(X'X)^{-1}Z'}_{P_{X}}b'\\
-&= \sigma^2 (b'b - b'P_{X})b)\\
+\mathbb{V}(\hat{\phi}) &= \sigma^2 b'\underbrace{X(X'X)^{-1}X'}_{P_{X}}b'\\
+\mathbb{V}(\tilde{\phi})- \mathbb{V}(\hat{\phi})&= \sigma^2 (b'b - b'P_{X}b)\\
 &= \sigma^2b'(I-P_{X})b\\
 &= \sigma^2 b'P_{X^{\perp}}b \ge 0
 \end{align*}
