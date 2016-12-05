@@ -62,7 +62,7 @@
 % fin macros
 
 
-\newcommand{\catnum}{17?} %numero de catedra
+\newcommand{\catnum}{17} %numero de catedra
 \newcommand{\fecha}{13 de Septiembre 2016 }
 
 %%%%%%%%%%%%%%%%%%
@@ -133,15 +133,15 @@ En la teoría de los EIVUM, la varianza $\mathbb{V}_{\theta}(\hat{g})$ es el rie
 
 Interesa obtener reglas de decisión con mínimo riesgo.\\
 
-Aquí, por ahora, no hay nada bayesiano. El EIVUM es un ejemplo (parcialmente exitoso) e reglas de decisión de mínimo riesgo para la función de pérdida cuadrática, y sujeto además a la propiedad de insesgamiento.
+Aquí, por ahora, no hay nada bayesiano. El EIVUM es un ejemplo (parcialmente exitoso) de reglas de decisión de mínimo riesgo para la función de pérdida cuadrática, y sujeto además a la propiedad de insesgamiento.
 
 \begin{ej} Se trata de decidir si se compra un lote de máquinas usadas, digamos N . Cada máquina vale c(precio de compra) y si una máquina funciona, ganamos g (durante un período); si falla perdemos p.\\
 Se sabe que hay algunas máquinas buenas y otras malas. Digamos que hay $\theta \in \{0,\ldots,N\}$ que están buenas (desconocido). ¿Qué decisión tomar? (compro o no compro?).\\
-Veamos la función L. Las decisiones son $d_{1} = comprar el lote$, $d_{2} = no comprar el lote$
+Veamos la función L. Las decisiones son $d_{1} = comprar\ el\ lote$, $d_{2} = no\ comprar\ el\ lote$
 \begin{align*}
 L(d_{i},\theta) 
 \end{align*}
-Si la decisión es no comprar, $L(d_{2},\theta) = 0$ pero $L(d_{1},\theta) = Nc - \thetag + (N-\theta)p$.\\
+Si la decisión es no comprar, $L(d_{2},\theta) = 0$ pero $L(d_{1},\theta) = Nc - \theta g + (N-\theta)p$.\\
 
 ¿Donde está $X$? Se propone testear una máquina escogida al azar. El experimento tiene un costo $e$ y puede resultar fracaso (0) o un éxito (1). La variable alearotia  X es Bernoulli con $\mathbb{P}_{\theta}(X=1) = \theta/N$.\\
 
@@ -157,8 +157,8 @@ Tenemos que estudiar las reglas $\delta$ posibles
 \end{align*}
 por lo tanto, existen 4 reglas $\delta_{1}, \delta_{2}, \delta_{3}, \delta_{4}$ posibles.
 \begin{itemize}
-\item $\delta_{1}$: compre nunca $\delta_{1}(X) = d_{1}, \forall x\in\mathfrak{X}$
-\item $\delta_{2}$: no compre siempre $\delta_{2} = d_{2}, x\in\mathfrak{X}$
+\item $\delta_{1}$: compre nunca $\delta_{1}(x) = d_{1}, \forall x\in\mathfrak{X}$
+\item $\delta_{2}$: no compre siempre $\delta_{2}(x) = d_{2}, \forall x\in\mathfrak{X}$
 \item $\delta_{3}$: $\delta_{3}(1) = d_{1}, \delta_{3}(0) = d_{2}$
 \item $\delta_{4}$: $\delta_{4}(1) = d_{2}, \delta_{4}(0) = d_{1}$
 \end{itemize}
@@ -167,7 +167,7 @@ Calculemos el riesgo de cada uno.
 \item $R_{\delta_{1}}(\theta) = \mathbb{E}_{\theta}(L(d_{1},\theta)) = L(d_{1},\theta) = Nc-\theta g (N-\theta)p + e$
 \item $R_{\delta_{2}}(\theta) = \mathbb{E}_{\theta}(L(d_{2},\theta)) = L(d_{1},\theta) = e$
 \item $R_{\delta_{3}}(\theta) = L(d_{1},\theta)\theta/N + L(d_{2},\theta) \left(1-\theta/N\right)$
-\item $R_{\delta_{4}}(\theta) = L(d_{2},\theta)\theta N + L(d_{1},\theta) \left(1-\theta/N\right)$
+\item $R_{\delta_{4}}(\theta) = L(d_{2},\theta)\theta/N + L(d_{1},\theta) \left(1-\theta/N\right)$
 \end{itemize}
 \begin{center}
 \includegraphics[scale=0.1]{imagenes/riesgo.jpg}
@@ -177,7 +177,7 @@ Una regla $\delta$ que tiene $R_{\delta}(\theta) \ge  R_{\hat{\delta}}(\theta) \
 
 En caso contrario $\delta$ se dice admisible. No existe en general, una regla que domine a todas (ser mejor uniformemente).\\
 
-Aquí ouede ser útil introducir elementos del análisis bayesiano, mediante una densidad a priori $\pi (\theta)$.\\
+Aquí puede ser útil introducir elementos del análisis bayesiano, mediante una densidad a priori $\pi (\theta)$.\\
 Con este elemento podemos calcular un riesgo promedio:
 \begin{align*}
 \bar{R_{\delta}} = \int_{\Theta} R_{\delta}(\theta) \pi(\theta) d\theta
